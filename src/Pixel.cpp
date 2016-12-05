@@ -16,7 +16,7 @@ Pixel::Pixel() : r_(255), g_(255), b_(255)
 
 }
 
-Pixel::Pixel(int r, int g, int b)
+Pixel::Pixel(uint8_t r, uint8_t g, uint8_t b)
 {
 	if (r<0 || r>255 || g<0 || g>255 || b<0 || b>255)
 	{

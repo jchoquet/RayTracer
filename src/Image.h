@@ -54,6 +54,10 @@ public:
 
 	friend std::ostream & operator << (std::ostream & st,const Image & image);
 
+	Pixel*& getPixels() {
+		return pixels_;
+	}
+
 public:
 	int width_;
 	int height_;

@@ -5,38 +5,41 @@
  *      Author: Latha
  */
 
+#include <cstdint>
+#include <ostream>
+
 #ifndef SRC_PIXEL_H_
 #define SRC_PIXEL_H_
 
 class Pixel {
 public:
 	Pixel();
-	Pixel(int, int, int);
+	Pixel(uint8_t, uint8_t, uint8_t);
 	Pixel(const Pixel & pixel);
 
 	~Pixel();
 
-	int getB() const {
+	uint8_t getB() const {
 		return b_;
 	}
 
-	void setB(int b) {
+	void setB(uint8_t b) {
 		b_ = b;
 	}
 
-	int getG() const {
+	uint8_t getG() const {
 		return g_;
 	}
 
-	void setG(int g) {
+	void setG(uint8_t g) {
 		g_ = g;
 	}
 
-	int getR() const {
+	uint8_t getR() const {
 		return r_;
 	}
 
-	void setR(int r) {
+	void setR(uint8_t r) {
 		r_ = r;
 	}
 
@@ -45,9 +48,9 @@ public:
 	friend std::ostream & operator << (std::ostream & st, const Pixel & pixel);
 
 private:
-	int r_;
-	int g_;
-	int b_;
+	uint8_t r_;
+	uint8_t g_;
+	uint8_t b_;
 };
 
 #endif /* SRC_PIXEL_H_ */

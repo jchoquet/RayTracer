@@ -9,8 +9,10 @@
 #include <iostream>
 
 #include "Scene.h"
+#include "libpng.cpp"
 
 using namespace std;
+
 
 int main() {
 	cout << "!!!Hello World!!!" << endl;

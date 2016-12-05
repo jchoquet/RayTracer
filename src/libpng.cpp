@@ -1,3 +1,10 @@
+/*
+ * libpng.cpp
+ *
+ *  Created on: 6 déc. 2016
+ *      Author: alexandre
+ */
+
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -147,3 +154,6 @@ static int pix (int value, int max)
 
 	return 0;
 }*/
+
+
+
