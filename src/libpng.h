@@ -10,6 +10,6 @@
 
 #include "Image.h"
 
-static int save_png_to_file (Image * bitmap, const char *path);
+int save_png_to_file (Image * bitmap, const char *path);
 
 #endif /* SRC_LIBPNG_H_ */

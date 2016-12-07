@@ -7,6 +7,7 @@
 
 #include <iostream>
 
+#include "Scene.h"
 #include "Material.h"
 #include "Image.h"
 #include "libpng.h"
@@ -28,10 +29,9 @@ Scene::~Scene()
 	delete[] shapes_;
 }
 
-void Scene::render(int width, int height, std::string name )
+void Scene::render(int width, int height, char* name )
 {
 	Image* image = new Image(width, height);
-	std::cout << *image << std::endl;
 	save_png_to_file(image, (char *) name);
 }
 

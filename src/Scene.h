@@ -36,7 +36,7 @@ public:
 		source_ = source;
 	}
 
-	void render(int, int, std::string);
+	void render(int, int, char*);
 
 	Shape* getShapes() const {
 		return shapes_;

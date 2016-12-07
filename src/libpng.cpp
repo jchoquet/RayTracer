@@ -16,7 +16,7 @@
 
 /* Write "bitmap" to a PNG file specified by "path"; returns 0 on success, non-zero on error. */
 
-static int save_png_to_file (Image * bitmap, const char *path)
+int save_png_to_file (Image * bitmap, const char *path)
 {
 	FILE * fp;
 	png_structp png_ptr = NULL;
@@ -62,10 +62,10 @@ static int save_png_to_file (Image * bitmap, const char *path)
 		png_byte *row = (uint8_t *) png_malloc (png_ptr, sizeof (uint8_t) * bitmap->getWidth() * pixel_size);
 		row_pointers[y] = row;
 		for (x = 0; x < bitmap->getHeight(); x++) {
-			Pixel * pixel = bitmap->getOnePixel(x,y);
-			*row++ = pixel->getR();
-			*row++ = pixel->getG();
-			*row++ = pixel->getB();
+			Pixel pixel = bitmap->getOnePixel(x,y);
+			*row++ = pixel.getR();
+			*row++ = pixel.getG();
+			*row++ = pixel.getB();
 		}
 	}
 

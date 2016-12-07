@@ -16,6 +16,6 @@ using namespace std;
 int main() {
 	cout << "!!!Hello World!!!" << endl;
 	Scene* scene = new Scene();
-	scene->render(4,4,"hello");
+	scene->render(100,100,"hello.png");
 	return 0;
 }
