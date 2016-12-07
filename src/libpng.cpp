@@ -10,32 +10,12 @@
 #include <stdio.h>
 #include <png.h>
 
-/* A coloured pixel */
-
-typedef struct {
-	uint8_t red;
-	uint8_t green;
-	uint8_t blue;
-} pixel_t;
-
-/* A picture */
-
-typedef struct  {
-	pixel_t *pixels;
-	size_t width;
-	size_t height;
-} bitmap_t;
-
-/* Given "bitmap", this returns the pixel of bitmap at the point ("x", "y"). */
-
-static pixel_t * pixel_at (bitmap_t * bitmap, int x, int y)
-{
-	return bitmap->pixels + bitmap->width * y + x;
-}
+#include "Image.h"
+#include "Pixel.h"
 
 /* Write "bitmap" to a PNG file specified by "path"; returns 0 on success, non-zero on error. */
 
-static int save_png_to_file (bitmap_t *bitmap, const char *path)
+static int save_png_to_file (Image * bitmap, const char *path)
 {
 	FILE * fp;
 	png_structp png_ptr = NULL;
@@ -72,19 +52,19 @@ static int save_png_to_file (bitmap_t *bitmap, const char *path)
 
 	/* Set image attributes. */
 
-	png_set_IHDR (png_ptr, info_ptr, bitmap->width, bitmap->height, depth, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
+	png_set_IHDR (png_ptr, info_ptr, bitmap->getWidth(), bitmap->getHeight(), depth, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
 
 	/* Initialize rows of PNG. */
 
-	row_pointers = (png_byte **) png_malloc (png_ptr, bitmap->height * sizeof (png_byte *));
-	for (y = 0; y < bitmap->height; y++) {
-		png_byte *row = (uint8_t *) png_malloc (png_ptr, sizeof (uint8_t) * bitmap->width * pixel_size);
+	row_pointers = (png_byte **) png_malloc (png_ptr, bitmap->getHeight() * sizeof (png_byte *));
+	for (y = 0; y < bitmap->getHeight(); y++) {
+		png_byte *row = (uint8_t *) png_malloc (png_ptr, sizeof (uint8_t) * bitmap->getWidth() * pixel_size);
 		row_pointers[y] = row;
-		for (x = 0; x < bitmap->width; x++) {
-			pixel_t * pixel = pixel_at (bitmap, x, y);
-			*row++ = pixel->red;
-			*row++ = pixel->green;
-			*row++ = pixel->blue;
+		for (x = 0; x < bitmap->getHeight(); x++) {
+			Pixel * pixel = bitmap->getOnePixel(x,y);
+			*row++ = pixel->getR();
+			*row++ = pixel->getG();
+			*row++ = pixel->getB();
 		}
 	}
 
@@ -98,7 +78,7 @@ static int save_png_to_file (bitmap_t *bitmap, const char *path)
 
 	status = 0;
 
-	for (y = 0; y < bitmap->height; y++) {
+	for (y = 0; y < bitmap->getHeight(); y++) {
 		png_free (png_ptr, row_pointers[y]);
 	}
 	png_free (png_ptr, row_pointers);
@@ -124,7 +104,7 @@ static int pix (int value, int max)
 
 /*int main ()
 {
-	bitmap_t fruit;
+	Image fruit;
 	int x,y;
 
 	/* create an image */
@@ -132,7 +112,7 @@ static int pix (int value, int max)
 	/*fruit.width = 100;
 	fruit.height = 100;
 
-	fruit.pixels = (pixel_t *) calloc (fruit.width * fruit.height, sizeof (pixel_t));
+	fruit.pixels = (Pixel *) calloc (fruit.width * fruit.height, sizeof (Pixel));
 
 	if (! fruit.pixels) {
 		return -1;
@@ -140,7 +120,7 @@ static int pix (int value, int max)
 
 	for (y = 0; y < fruit.height; y++) {
 		for (x = 0; x < fruit.width; x++) {
-			pixel_t * pixel = pixel_at (& fruit, x, y);
+			Pixel * pixel = fruit->getOnePixel(x,y);
 			pixel ->red = pix (x, fruit.width);
 			pixel->green = pix (y, fruit.height);
 		}
