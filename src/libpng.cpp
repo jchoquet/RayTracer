@@ -12,7 +12,6 @@
 
 #include "libpng.h"
 
-#include "Image.h"
 #include "Pixel.h"
 
 /* Write "bitmap" to a PNG file specified by "path"; returns 0 on success, non-zero on error. */

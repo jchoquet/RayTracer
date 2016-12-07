@@ -9,7 +9,6 @@
 #include <iostream>
 
 #include "Scene.h"
-#include "libpng.cpp"
 
 using namespace std;
 

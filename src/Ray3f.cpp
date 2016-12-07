@@ -1,4 +1,5 @@
 /*
+
  * Ray3f.cpp
  *
  *  Created on: 10 oct. 2016

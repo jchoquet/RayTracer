@@ -12,6 +12,7 @@
 #include <string>
 #include "Camera.h"
 #include "Shape.h"
+#include "Ray3f.h"
 
 class Scene {
 public:

@@ -7,8 +7,6 @@
 
 #include <iostream>
 
-#include "Scene.h"
-#include "Quad.h"
 #include "Material.h"
 #include "Image.h"
 #include "libpng.h"
