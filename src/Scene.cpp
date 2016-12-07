@@ -11,6 +11,7 @@
 #include "Quad.h"
 #include "Material.h"
 #include "Image.h"
+#include "libpng.h"
 
 Scene::Scene() : camera_(Camera()), source_(Ray3f())
 {
@@ -33,6 +34,7 @@ void Scene::render(int width, int height, std::string name )
 {
 	Image* image = new Image(width, height);
 	std::cout << *image << std::endl;
+	save_png_to_file(image, (char *) name);
 }
 
 

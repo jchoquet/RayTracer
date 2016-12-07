@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include <png.h>
 
+#include "libpng.h"
+
 #include "Image.h"
 #include "Pixel.h"
 
@@ -91,49 +93,6 @@ static int save_png_to_file (Image * bitmap, const char *path)
 	fopen_failed:
 	return status;
 }
-
-/* Given "value" and "max", the maximum value which we expect "value" to take, this returns an integer between 0 and 255 proportional to "value" divided by "max". */
-
-static int pix (int value, int max)
-{
-	if (value < 0) {
-		return 0;
-	}
-	return (int) (256.0 *((double) (value)/(double) max));
-}
-
-/*int main ()
-{
-	Image fruit;
-	int x,y;
-
-	/* create an image */
-
-	/*fruit.width = 100;
-	fruit.height = 100;
-
-	fruit.pixels = (Pixel *) calloc (fruit.width * fruit.height, sizeof (Pixel));
-
-	if (! fruit.pixels) {
-		return -1;
-	}
-
-	for (y = 0; y < fruit.height; y++) {
-		for (x = 0; x < fruit.width; x++) {
-			Pixel * pixel = fruit->getOnePixel(x,y);
-			pixel ->red = pix (x, fruit.width);
-			pixel->green = pix (y, fruit.height);
-		}
-	}
-
-	/* Write the image to a file 'fruit.png'. */
-
-	/*save_png_to_file (& fruit, "fruit.png");
-
-	free (fruit.pixels);
-
-	return 0;
-}*/
 
 
 
