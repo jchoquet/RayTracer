@@ -13,7 +13,7 @@
 class Sphere: public Shape {
 public:
 	Sphere();
-	Sphere(const Vector3f&, float);
+	Sphere(const Material&, const Vector3f&, float);
 	~Sphere();
 
 	const Vector3f& getOrigin() const {

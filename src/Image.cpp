@@ -42,7 +42,7 @@ Image::Image(const Image& image)
 	pixels_ = new Pixel[width_*height_];
 	for (int i=0;i<width_*height_;i++)
 	{
-		pixels_[i] =  image.getOnePixel(i);
+		pixels_[i] = image.getOnePixel(i);
 	}
 }
 

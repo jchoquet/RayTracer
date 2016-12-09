@@ -24,4 +24,3 @@ Material::~Material()
 {
 
 }
-

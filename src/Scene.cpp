@@ -17,7 +17,7 @@ Scene::Scene() : camera_(Camera()), source_(Ray3f())
 	shapes_ = new Shape[1];
 }
 
-Scene::Scene(Camera camera, Shape shapes[], Ray3f source)
+Scene::Scene(Camera& camera, Shape* shapes, Ray3f& source)
 {
 	camera_ = camera;
 	shapes_ = shapes;

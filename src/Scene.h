@@ -17,7 +17,7 @@
 class Scene {
 public:
 	Scene();
-	Scene(Camera, Shape[], Ray3f);
+	Scene(Camera&, Shape*, Ray3f&);
 	~Scene();
 
 	const Camera& getCamera() const {

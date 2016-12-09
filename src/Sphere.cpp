@@ -7,12 +7,13 @@
 
 #include "Sphere.h"
 
-Sphere::Sphere() : origin_(Vector3f()), radius_(0)
+Sphere::Sphere() : Shape(), origin_(Vector3f()), radius_(0)
 {
 
 }
 
-Sphere::Sphere(const Vector3f& origin, float radius) {
+Sphere::Sphere(const Material& mater,const Vector3f& origin, float radius) : Shape(mater) {
+
 	origin_ = origin;
 	radius_ = radius;
 }
