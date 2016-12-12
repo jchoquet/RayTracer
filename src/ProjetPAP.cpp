@@ -22,17 +22,17 @@ int main() {
 
 	// parameters
 	int nb_shape = 1;
-	int height = 100;
-	int width = 100;
+	int height = 20;
+	int width = 20;
 	int x_image = 200;
-	int y_topleft_image = 50;
-	int z_topleft_image = -50;
+	int y_topleft_image = 10;
+	int z_topleft_image = -10;
 
 	// initialization of elements of the scene
 	Camera cam(Vector3f(0,0,0),Vector3f(0,0,0));
 	Ray3f source(Vector3f(500,200,0), Vector3f(0,0,0));
 	Shape* tab_S = new Shape[nb_shape];
-	//tab_S[0] = Sphere(Material(255,127,0,0), Vector3f(500,0,0), (float) 50);
+	tab_S[0] = Sphere(Material(255,127,0,0), Vector3f(500,0,0), (float) 50);
 
 	// initialization of the scene
 	Scene scene(cam, tab_S, nb_shape, source);

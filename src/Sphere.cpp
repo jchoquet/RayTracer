@@ -5,7 +5,11 @@
  *      Author: Latha
  */
 
+#include <iostream>
+
 #include "Sphere.h"
+
+using namespace std;
 
 Sphere::Sphere() : Shape(), origin_(Vector3f()), radius_(0)
 {
@@ -46,6 +50,8 @@ bool Sphere::isHit(Ray3f ray)
 		a = (xB-xA)*(xB-xA) + (yB-yA)*(yB-yA) + (zB-zA)*(zB-zA);
 		b = 2*((xB-xA)*(xA-xC)+(yB-yA)*(yA-yC)+(zB-zA)*(zA-zC));
 		c = (xA-xC)*(xA-xC) + (yA-yC)*(yA-yC) + (zA-zC)*(zA-zC) - r*r;
+
+		cout << a << " * " << b << " * " << c << endl;
 
 		// computation of delta
 		delta = b*b - 4*a*c;

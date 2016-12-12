@@ -41,7 +41,11 @@ std::ostream & operator << (std::ostream & st, const Pixel & pixel)
 
 Pixel& Pixel::operator =(const Pixel& pixel)
 {
-	// TODO operator = for Pixel
+	r_ = pixel.getR();
+	g_ = pixel.getG();
+	b_ = pixel.getB();
+
+	return *this;
 }
 
 Pixel::Pixel(const Pixel& pixel)

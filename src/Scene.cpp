@@ -16,6 +16,8 @@
 #include "Sphere.h"
 #include "Shape.h"
 
+using namespace std;
+
 Scene::Scene() : camera_(Camera()), source_(Ray3f()), nb_shape_(1)
 {
 	shapes_ = new Shape[1];
@@ -40,21 +42,33 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 	int i,j;
 
 	// creation of the image with associated width and height
-	Image* image = Image(width, height);
+	Image* image = new Image(width, height);
 
 	for (i=0;i<height;i++) {
 		for(j=0;j<width;j++) {
-			Ray3f line (camera_.getPosition(), Vector3f(x_image, (y_topleft_image + i), (z_topleft_image + j)));
+			Ray3f line (camera_.getPosition(), Vector3f(x_image, (y_topleft_image - i), (z_topleft_image + j)));
+
+			cout << y_topleft_image - i << " -- " << z_topleft_image + j << endl;
+
 			bool res = shapes_[0].isHit(line);
+
+			//cout << res;
 
 			if (res) {
 				Pixel newPix (shapes_[0].getMatter().getR(), shapes_[0].getMatter().getG(), shapes_[0].getMatter().getB());
 				image->setOnePixel(i,j, newPix);
+
+				//cout << 1;
+
 			} else {
-				image->setOnePixel(i,j, Pixel(0,0,0));
+				image->setOnePixel(i,j, Pixel(000,127,255));
+
+				//cout <<2;
 			}
 		}
 	}
+
+	cout << endl;
 
 	// we save the image to an png file
 	save_png_to_file(image, (char *) name);
