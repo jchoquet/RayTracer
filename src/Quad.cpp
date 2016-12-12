@@ -13,9 +13,8 @@ Quad::Quad() : Shape(), origin_(Vector3f()), width_(Vector3f()), height_(Vector3
 
 }
 
-Quad::Quad(Vector3f origin, Vector3f width, Vector3f height)
+Quad::Quad(Vector3f origin, Vector3f width, Vector3f height) : Shape ()
 {
-	Shape();
 	origin_ = origin;
 	width_ = width;
 	height_ = height;
@@ -26,3 +25,5 @@ Quad::~Quad()
 
 }
 
+bool Quad::isHit(Ray3f ray3f) {
+}

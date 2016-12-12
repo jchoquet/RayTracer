@@ -41,6 +41,8 @@ public:
 		width_ = width;
 	}
 
+	bool isHit(Ray3f);
+
 private:
 	Vector3f origin_;
 	Vector3f width_;

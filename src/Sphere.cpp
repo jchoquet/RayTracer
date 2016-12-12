@@ -51,10 +51,13 @@ bool Sphere::isHit(Ray3f ray)
 		b = 2*((xB-xA)*(xA-xC)+(yB-yA)*(yA-yC)+(zB-zA)*(zA-zC));
 		c = (xA-xC)*(xA-xC) + (yA-yC)*(yA-yC) + (zA-zC)*(zA-zC) - r*r;
 
-		cout << a << " * " << b << " * " << c << endl;
-
 		// computation of delta
 		delta = b*b - 4*a*c;
+
+		if (yB == 0 && zB == 0) {
+			cout << a << " * " << b << " * " << c << endl;
+			cout << delta;
+		}
 
 		return (delta >= 0);
 }

@@ -20,7 +20,7 @@ using namespace std;
 
 Scene::Scene() : camera_(Camera()), source_(Ray3f()), nb_shape_(1)
 {
-	shapes_ = new Shape[1];
+	Shape* shapes_[1] = {new Sphere(Material(255,127,0,0), Vector3f(500,0,0), (float) 50)};
 }
 
 Scene::Scene(Camera& camera, Shape* shapes, int nb_shape, Ray3f& source)
@@ -48,7 +48,7 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 		for(j=0;j<width;j++) {
 			Ray3f line (camera_.getPosition(), Vector3f(x_image, (y_topleft_image - i), (z_topleft_image + j)));
 
-			cout << y_topleft_image - i << " -- " << z_topleft_image + j << endl;
+			//cout << y_topleft_image - i << " -- " << z_topleft_image + j << endl;
 
 			bool res = shapes_[0].isHit(line);
 
