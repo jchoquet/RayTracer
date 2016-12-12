@@ -21,4 +21,3 @@ Ray3f::Ray3f(Vector3f origin, Vector3f direction) {
 Ray3f::~Ray3f() {
 
 }
-

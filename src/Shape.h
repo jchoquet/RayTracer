@@ -15,7 +15,7 @@ class Shape {
 public:
 	Shape();
 	Shape(const Material&);
-	~Shape();
+	virtual ~Shape();
 
 	const Material& getMatter() const {
 		return matter_;
@@ -25,9 +25,9 @@ public:
 		matter_ = matter;
 	}
 
-	bool isHit(Ray3f);
-
 	const Ray3f& reflect(const Ray3f&);
+
+	bool isHit(Ray3f);
 
 protected:
 	Material matter_;

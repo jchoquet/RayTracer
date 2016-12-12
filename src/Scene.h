@@ -17,7 +17,7 @@
 class Scene {
 public:
 	Scene();
-	Scene(Camera&, Shape*, Ray3f&);
+	Scene(Camera&, Shape*, int, Ray3f&);
 	~Scene();
 
 	const Camera& getCamera() const {
@@ -36,16 +36,25 @@ public:
 		source_ = source;
 	}
 
-	void render(int, int, char*);
+	void render(int, int, char*, int, int, int);
 
 	Shape* getShapes() const {
 		return shapes_;
+	}
+
+	int getNbShape() const {
+		return nb_shape_;
+	}
+
+	void setNbShape(int nbShape) {
+		nb_shape_ = nbShape;
 	}
 
 private:
 	Camera camera_;
 	Shape* shapes_;
 	Ray3f source_;
+	int nb_shape_;
 };
 
 #endif /* SCENE_H_ */

@@ -6,11 +6,11 @@
  */
 
 #ifndef SPHERE_H_
-#define SPHERE_H_
+#define SPHERE_H
 
 #include "Shape.h"
 
-class Sphere: public Shape {
+class Sphere : public Shape {
 public:
 	Sphere();
 	Sphere(const Material&, const Vector3f&, float);
@@ -32,9 +32,12 @@ public:
 		radius_ = radius;
 	}
 
+	bool isHit(Ray3f);
+
 private:
 	Vector3f origin_;
 	float radius_;
+
 };
 
 #endif /* SPHERE_H_ */

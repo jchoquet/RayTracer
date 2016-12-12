@@ -20,10 +20,9 @@ Shape::~Shape() {
 
 }
 
-bool Shape::isHit(Ray3f ray){
-	// TODO isHit method to code
-}
-
 const Ray3f& Shape::reflect(const Ray3f& ray) {
 	// TODO reflect method to code
+}
+
+bool Shape::isHit(Ray3f ray3f) {
 }
