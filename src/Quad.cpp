@@ -7,6 +7,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <cmath>
 
 #include "Quad.h"
 #include "Vector3f.h"
@@ -30,8 +31,13 @@ Quad::~Quad()
 }
 
 // With Smit's algorithm
-bool Quad::isHit(Ray3f ray3f)
+bool Quad::isHit(Ray3f ray3f, double* distance)
 {
+	bool res;
+
+	double d,x,y,z;
+	double newDistance;
+
 	double x0 = origin_.getX();
 	double y0 = origin_.getY();
 	double z0 = origin_.getZ();
@@ -98,14 +104,42 @@ bool Quad::isHit(Ray3f ray3f)
 	//cout << tmin << " " << tymin << " " << tzmin << " - " << tmax << " " << tymax << " " << tzmax << endl;
 
 	if (x0==x1) {
-		cout << "test" << endl;
-		return (max(tymin,tzmin)<min(tymax,tzmax));
+		//cout << "test" << endl;
+		res = (max(tymin,tzmin)<=min(tymax,tzmax));
 	} else if (y0==y1){
-		return (max(tmin,tzmin)<min(tmax,tzmax));
+		res = (max(tmin,tzmin)<=min(tmax,tzmax));
 	} else if (z0==z1){
-		return (max(tmin,tymin)<min(tmax,tymax));
+		res = (max(tmin,tymin)<=min(tmax,tymax));
 	} else {
 		//cout << "test" << endl;
-		return (max(tmin,max(tymin,tzmin))<min(tmax,min(tymax,tzmax)));
+		res = (max(tmin,max(tymin,tzmin))<=min(tmax,min(tymax,tzmax)));
+	}
+
+	if (res) {
+
+		if ((x1-x0)<2) {
+			d = tmin;
+		} else if ((y1-y0)<2) {
+			d = tymin;
+		} else if ((z1-z0)<2) {
+			d = tzmin;
+		} else {
+			d = max(tmin,max(tymin,tzmin));
+		}
+
+		x = xi + d*xc;
+		y = yi + d*yc;
+		z = zi + d*zc;
+
+		newDistance = sqrt(x*x + y*y + z*z);
+
+		if (*distance < 0 || newDistance < *distance) {
+			*distance = newDistance;
+			cout << "test" << endl;
+			return true;
+		} else {
+			cout << "bouh" << endl;
+			return false;
+		}
 	}
 }

@@ -25,7 +25,7 @@ public:
 		origin_ = origin;
 	}
 
-	bool isHit(Ray3f);
+	bool isHit(Ray3f,double*);
 
 	const Vector3f& getSize() const {
 		return size_;

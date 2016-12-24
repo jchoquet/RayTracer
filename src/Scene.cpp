@@ -43,7 +43,11 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 {
 	// initialization of the variable
 	int i,j;
-	bool res;
+	bool toChange;;
+	double distance = -1;
+	double* pdistance;
+
+	pdistance = &distance;
 
 	// creation of the image with associated width and height
 	Image* image = new Image(width, height);
@@ -52,12 +56,15 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 		for(j=0;j<width;j++) {
 			Ray3f line (camera_.getPosition(), Vector3f(x_image, (y_topleft_image - i), (z_topleft_image + j)));
 
+			distance = -1;
 			image->setOnePixel(i,j, Pixel(000,127,255));
+
 			//cout << y_topleft_image - i << " -- " << z_topleft_image + j << endl;
+
 			for(int k=0; k<shapes_.size(); k++) {
-				res = shapes_[k]->isHit(line);
-				cout << " [" << res << "] ";
-				if (res) {
+				toChange = shapes_[k]->isHit(line,pdistance);
+				//cout << " [" << res << "] ";
+				if (toChange) {
 					Pixel newPix (shapes_[k]->getMatter().getR(), shapes_[k]->getMatter().getG(), shapes_[k]->getMatter().getB());
 					image->setOnePixel(i,j, newPix);
 				}
