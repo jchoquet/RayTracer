@@ -1,9 +1,8 @@
-/*
- * Camera.cpp
- *
- *  Created on: 10 oct. 2016
- *      Author: Latha
- */
+/**
+ * \file Camera.cpp
+ * \brief Implémentation de la classe Camera.
+ * \author Alexandre DE BOE, Julie CHOQUET
+*/
 
 #include "Camera.h"
 

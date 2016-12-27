@@ -1,9 +1,8 @@
-/*
- * libpng.cpp
- *
- *  Created on: 6 déc. 2016
- *      Author: alexandre
- */
+/**
+ * \file libpng.cpp
+ * \brief Librarie libpng.
+ * \author Alexandre DE BOE, Julie CHOQUET
+*/
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -92,6 +91,3 @@ int save_png_to_file (Image * bitmap, const char *path)
 	fopen_failed:
 	return status;
 }
-
-
-

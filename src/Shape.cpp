@@ -1,9 +1,8 @@
-/*
- * Shape.cpp
- *
- *  Created on: 10 oct. 2016
- *      Author: Latha
- */
+/**
+ * \file Shape.cpp
+ * \brief Implémentation de la classe Shape.
+ * \author Alexandre DE BOE, Julie CHOQUET
+*/
 
 #include "Shape.h"
 

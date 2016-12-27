@@ -1,10 +1,11 @@
-//============================================================================
-// Name        : ProjetPAP.cpp
-// Author      : Alexandre
-// Version     :
-// Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
-//============================================================================
+/**
+ * \file ProjetPAP.cpp
+ * \brief Fichier principal.
+ * \author Alexandre DE BOE, Julie CHOQUET
+ *
+ * \details Créé la scène et l'image de rendu puis la sauvegarde.
+ *
+*/
 
 #include <iostream>
 #include <vector>
@@ -20,12 +21,9 @@
 
 using namespace std;
 
-
 int main() {
-	cout << "!!!Hello World!!!" << endl;
 
-
-	// parameters
+	// Déclaration des différents paramètres
 	int nb_shape = 7;
 	int height = 2800;
 	int width = 2800;
@@ -33,7 +31,7 @@ int main() {
 	int y_topleft_image = 1400;
 	int z_topleft_image = -1400;
 
-	// initialization of elements of the scene
+	// Initialisation des différents élèments composant la scène
 	Camera cam(Vector3f(0,0,0),Vector3f(0,0,0));
 	Vector3f source(2800,0,-3598);
 	vector<Shape*> tab_S;
@@ -47,10 +45,10 @@ int main() {
 	tab_S.push_back(new Sphere(Material(255,127,0,0), Vector3f(4800,0,0), (float) 800)); // sphere
 
 
-	// initialization of the scene
+	// Initialisation de la scène
 	Scene scene(cam, tab_S, nb_shape, source);
 
-	// computing the image
+	// Calcul de l'image et sauvegarde
 	scene.render(height,width,"hello.png", x_image, y_topleft_image, z_topleft_image);
 
 	return 0;

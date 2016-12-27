@@ -1,16 +1,12 @@
-/*
-
- * Ray3f.cpp
- *
- *  Created on: 10 oct. 2016
- *      Author: Latha
- */
+/**
+ * \file Ray3f.cpp
+ * \brief Implémentation de la classe Ray3f.
+ * \author Alexandre DE BOE, Julie CHOQUET
+*/
 
 #include "Ray3f.h"
 
-Ray3f::Ray3f() : origin_(Vector3f()), direction_(Vector3f())
-{
-
+Ray3f::Ray3f() : origin_(Vector3f()), direction_(Vector3f()) {
 }
 
 Ray3f::Ray3f(Vector3f origin, Vector3f direction) {
@@ -19,5 +15,4 @@ Ray3f::Ray3f(Vector3f origin, Vector3f direction) {
 }
 
 Ray3f::~Ray3f() {
-
 }
