@@ -6,6 +6,8 @@
  */
 
 #include <iostream>
+#include <algorithm>
+#include <cmath>
 
 #include "Sphere.h"
 
@@ -26,38 +28,62 @@ Sphere::~Sphere() {
 
 }
 
-bool Sphere::isHit(Ray3f ray)
+bool Sphere::isHit(Ray3f ray, double* distance)
 {
 	// initizialization of all parameters
-		float a,b,c;
-		float delta;
+	double a,b,c;
+	double delta;
 
-		int xA = ray.getOrigin().getX();
-		int yA = ray.getOrigin().getY();
-		int zA = ray.getOrigin().getZ();
+	double newDistance;
+	double d,x,y,z;
 
-		int xB = ray.getDirection().getX();
-		int yB = ray.getDirection().getY();
-		int zB = ray.getDirection().getZ();
+	double xA = ray.getOrigin().getX();
+	double yA = ray.getOrigin().getY();
+	double zA = ray.getOrigin().getZ();
 
-		int xC = origin_.getX();
-		int yC = origin_.getY();
-		int zC = origin_.getZ();
-		float r = radius_;
+	double xB = ray.getDirection().getX();
+	double yB = ray.getDirection().getY();
+	double zB = ray.getDirection().getZ();
 
-		// intersection between line and sphere -> a*d²+b*d+c=0
-		// computation of a, b and c
-		a = (xB-xA)*(xB-xA) + (yB-yA)*(yB-yA) + (zB-zA)*(zB-zA);
-		b = 2*((xB-xA)*(xA-xC)+(yB-yA)*(yA-yC)+(zB-zA)*(zA-zC));
-		c = (xA-xC)*(xA-xC) + (yA-yC)*(yA-yC) + (zA-zC)*(zA-zC) - r*r;
+	double xC = origin_.getX();
+	double yC = origin_.getY();
+	double zC = origin_.getZ();
+	double r = radius_;
 
-		// computation of delta
-		delta = b*b - 4*a*c;
+	// intersection between line and sphere -> a*d²+b*d+c=0
+	// computation of a, b and c
+	a = (xB-xA)*(xB-xA) + (yB-yA)*(yB-yA) + (zB-zA)*(zB-zA);
+	b = 2*((xB-xA)*(xA-xC)+(yB-yA)*(yA-yC)+(zB-zA)*(zA-zC));
+	c = (xA-xC)*(xA-xC) + (yA-yC)*(yA-yC) + (zA-zC)*(zA-zC) - r*r;
 
-		if (yB == 0 && zB == 0) {
-			cout << a << " * " << b << " * " << c << endl;
-			cout << delta;
-		}
+	// computation of delta
+	delta = b*b - 4*a*c;
 
-		return (delta >= 0);
+	/*if (yB == 0 && zB == 0) {
+		cout << a << " * " << b << " * " << c << endl;
+		cout << delta;
+	}*/
+
+	if (a==0) {
+		d = -c/b;
+	} else if (delta < 0) {
+		return false;
+	} else if (delta == 0) {
+		d = b/(2*a);
+	} else {
+		d = min((b-sqrt(delta))/(2*a),(b+sqrt(delta))/(2*a));
+	}
+
+	x = xA + d*xB;
+	y = yA + d*yB;
+	z = zA + d*zB;
+
+	newDistance = sqrt(x*x + y*y + z*z);
+
+	if (*distance < 0 || newDistance < *distance) {
+		*distance = newDistance;
+		return true;
+	} else {
+		return false;
+	}
 }

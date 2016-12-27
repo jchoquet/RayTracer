@@ -17,7 +17,7 @@
 class Scene {
 public:
 	Scene();
-	Scene(Camera&, Shape*, int, Ray3f&);
+	Scene(Camera&, std::vector<Shape*>, int, Ray3f&);
 	~Scene();
 
 	const Camera& getCamera() const {
@@ -38,10 +38,6 @@ public:
 
 	void render(int, int, char*, int, int, int);
 
-	Shape* getShapes() const {
-		return shapes_;
-	}
-
 	int getNbShape() const {
 		return nb_shape_;
 	}
@@ -50,9 +46,13 @@ public:
 		nb_shape_ = nbShape;
 	}
 
+	const std::vector<Shape*>& getShapes() const {
+		return shapes_;
+	}
+
 private:
 	Camera camera_;
-	Shape* shapes_;
+	std::vector<Shape*> shapes_;
 	Ray3f source_;
 	int nb_shape_;
 };

@@ -20,10 +20,10 @@ using namespace std;
 
 Scene::Scene() : camera_(Camera()), source_(Ray3f()), nb_shape_(1)
 {
-	Shape* shapes_[1] = {new Sphere(Material(255,127,0,0), Vector3f(500,0,0), (float) 50)};
+	shapes_.push_back(new Sphere(Material(255,127,0,0), Vector3f(500,0,0), (float) 50));
 }
 
-Scene::Scene(Camera& camera, Shape* shapes, int nb_shape, Ray3f& source)
+Scene::Scene(Camera& camera, std::vector<Shape*> shapes, int nb_shape, Ray3f& source)
 {
 	camera_ = camera;
 	shapes_ = shapes;
@@ -33,13 +33,21 @@ Scene::Scene(Camera& camera, Shape* shapes, int nb_shape, Ray3f& source)
 
 Scene::~Scene()
 {
-	delete[] shapes_;
+	for (int i=0;i<shapes_.size();i++) {
+		delete shapes_[i];
+	}
+	shapes_.shrink_to_fit();
 }
 
 void Scene::render(int width, int height, char* name, int x_image, int y_topleft_image, int z_topleft_image )
 {
 	// initialization of the variable
 	int i,j;
+	bool toChange;;
+	double distance = -1;
+	double* pdistance;
+
+	pdistance = &distance;
 
 	// creation of the image with associated width and height
 	Image* image = new Image(width, height);
@@ -48,22 +56,18 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 		for(j=0;j<width;j++) {
 			Ray3f line (camera_.getPosition(), Vector3f(x_image, (y_topleft_image - i), (z_topleft_image + j)));
 
+			distance = -1;
+			image->setOnePixel(i,j, Pixel(000,127,255));
+
 			//cout << y_topleft_image - i << " -- " << z_topleft_image + j << endl;
 
-			bool res = shapes_[0].isHit(line);
-
-			//cout << res;
-
-			if (res) {
-				Pixel newPix (shapes_[0].getMatter().getR(), shapes_[0].getMatter().getG(), shapes_[0].getMatter().getB());
-				image->setOnePixel(i,j, newPix);
-
-				//cout << 1;
-
-			} else {
-				image->setOnePixel(i,j, Pixel(000,127,255));
-
-				//cout <<2;
+			for(int k=0; k<shapes_.size(); k++) {
+				toChange = shapes_[k]->isHit(line,pdistance);
+				//cout << " [" << res << "] ";
+				if (toChange) {
+					Pixel newPix (shapes_[k]->getMatter().getR(), shapes_[k]->getMatter().getG(), shapes_[k]->getMatter().getB());
+					image->setOnePixel(i,j, newPix);
+				}
 			}
 		}
 	}

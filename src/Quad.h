@@ -14,16 +14,8 @@
 class Quad: public Shape {
 public:
 	Quad();
-	Quad(Vector3f, Vector3f, Vector3f);
+	Quad(const Material&, Vector3f, Vector3f);
 	~Quad();
-
-	const Vector3f& getHeight() const {
-		return height_;
-	}
-
-	void setHeight(const Vector3f& height) {
-		height_ = height;
-	}
 
 	const Vector3f& getOrigin() const {
 		return origin_;
@@ -33,20 +25,19 @@ public:
 		origin_ = origin;
 	}
 
-	const Vector3f& getWidth() const {
-		return width_;
+	bool isHit(Ray3f,double*);
+
+	const Vector3f& getSize() const {
+		return size_;
 	}
 
-	void setWidth(const Vector3f& width) {
-		width_ = width;
+	void setSize(const Vector3f& size) {
+		size_ = size;
 	}
-
-	bool isHit(Ray3f);
 
 private:
 	Vector3f origin_;
-	Vector3f width_;
-	Vector3f height_;
+	Vector3f size_;
 };
 
 #endif /* QUAD_H_ */
