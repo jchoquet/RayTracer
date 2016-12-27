@@ -6,9 +6,7 @@
 
 #include "Ray3f.h"
 
-Ray3f::Ray3f() : origin_(Vector3f()), direction_(Vector3f())
-{
-
+Ray3f::Ray3f() : origin_(Vector3f()), direction_(Vector3f()) {
 }
 
 Ray3f::Ray3f(Vector3f origin, Vector3f direction) {
@@ -17,5 +15,4 @@ Ray3f::Ray3f(Vector3f origin, Vector3f direction) {
 }
 
 Ray3f::~Ray3f() {
-
 }
