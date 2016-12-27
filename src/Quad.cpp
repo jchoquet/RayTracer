@@ -135,10 +135,10 @@ bool Quad::isHit(Ray3f ray3f, double* distance)
 
 		if (*distance < 0 || newDistance < *distance) {
 			*distance = newDistance;
-			cout << "test" << endl;
+			//cout << "test" << endl;
 			return true;
 		} else {
-			cout << "bouh" << endl;
+			//cout << "bouh" << endl;
 			return false;
 		}
 	}

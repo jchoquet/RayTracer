@@ -23,7 +23,7 @@ int main() {
 	cout << "!!!Hello World!!!" << endl;
 
 	// parameters
-	int nb_shape = 6;
+	int nb_shape = 7;
 	int height = 700;
 	int width = 700;
 	int x_image = 200;
@@ -35,13 +35,14 @@ int main() {
 	Ray3f source(Vector3f(500,200,0), Vector3f(0,0,0));
 	vector<Shape*> tab_S;
 	tab_S.reserve(nb_shape);
+	tab_S.push_back(new Sphere(Material(155,127,2550,0), Vector3f(300,100,0), (float) 50)); // sphere
 	tab_S.push_back(new Sphere(Material(255,127,0,0), Vector3f(500,0,0), (float) 200));
-	tab_S.push_back(new Quad(Material(127,147,200,0), Vector3f(500,-900,-900), Vector3f(1000,1,1800))); // panneau de droite
+	tab_S.push_back(new Quad(Material(147,207,220,0), Vector3f(500,-900,-900), Vector3f(1000,1,1800))); // panneau de droite
 	tab_S.push_back(new Quad(Material(127,187,200,0), Vector3f(500, 900,-900), Vector3f(1000,1,1800))); // panneau de gauche
 	tab_S.push_back(new Quad(Material(127,227,100,0), Vector3f(500, -900,900), Vector3f(1000,1800,1))); // panneau du bas
-	tab_S.push_back(new Quad(Material(127,267,100,0), Vector3f(500, -900,-900), Vector3f(1000,1800,1))); // panneau du haut
+	tab_S.push_back(new Quad(Material(137,197,210,0), Vector3f(500, -900,-900), Vector3f(1000,1800,1))); // panneau du haut
 	tab_S.push_back(new Quad(Material(27,267,100,0), Vector3f(1500, -900,-900), Vector3f(1,1800,1800))); // panneau du fond
-	//tab_S.push_back(new Sphere(Material(255,127,0,0), Vector3f(500,0,0), (float) 300)); // sphere
+
 
 	// initialization of the scene
 	Scene scene(cam, tab_S, nb_shape, source);
