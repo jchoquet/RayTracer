@@ -33,6 +33,39 @@ Pixel::~Pixel()
 	// Dtor for Pixel
 }
 
+void Pixel::luminosity(double level)
+{
+	double tempR,tempG,tempB;
+
+	tempR = r_ - level + 155;
+	tempG = g_ - level + 155;
+	tempB = b_ - level + 155;
+
+	if (tempR > 255) {
+		r_ = 255;
+	} else if (tempR < 0) {
+		r_ = 0;
+	} else {
+		r_ = (uint8_t) tempR;
+	}
+
+	if (tempG > 255) {
+		g_ = 255;
+	} else if (tempG < 0) {
+		g_ = 0;
+	} else {
+		g_ = (uint8_t) tempG;
+	}
+
+	if (tempB > 255) {
+		b_ = 255;
+	} else if (tempB < 0) {
+		b_ = 0;
+	} else {
+		b_ = (uint8_t) tempB;
+	}
+}
+
 std::ostream & operator << (std::ostream & st, const Pixel & pixel)
 {
 	st << "[" << pixel.getR() << ", " << pixel.getG() << ", " << pixel.getB() << "]";

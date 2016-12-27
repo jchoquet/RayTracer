@@ -6,6 +6,7 @@
  */
 
 #include <iostream>
+#include <cmath>
 
 #include "Scene.h"
 #include "Material.h"
@@ -45,7 +46,7 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 	int i,j;
 
 	bool toChange,isHit;
-	double distance, lightDistance;
+	double distance, lightDistance, shadowDistance;
 	double* pdistance = &distance, *pLightDistance = &lightDistance;
 
 	double x,y,z, lx,ly,lz;
@@ -73,17 +74,27 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 					//cout << x << " " << y << " " << z << endl;
 					Ray3f lightRay (source_, Vector3f(x,y,z));
 
+					shadowDistance = sqrt((x-source_.getX())*(x-source_.getX()) + (y-source_.getY())*(y-source_.getY()) + (z-source_.getZ())*(z-source_.getZ()));
+
 					Pixel newPix (shapes_[k]->getMatter().getR(), shapes_[k]->getMatter().getG(), shapes_[k]->getMatter().getB());
+
+					// the calculation of the light is separate in two functions to avoid to much light around the light source
+					if (shadowDistance < 750) {
+						newPix.luminosity(0.2*shadowDistance-55);
+					} else {
+						newPix.luminosity(0.02*shadowDistance+80);
+					}
+
 					image->setOnePixel(i,j, newPix);
 
 					lightDistance = -1;
 
 					for(int l=5; l<shapes_.size(); l++) {
 						isHit = shapes_[l]->isHit(lightRay,pLightDistance,plx,ply,plz);
-						cout << " [" << isHit << "] ";
+						//cout << isHit << endl;
 
 						if (isHit) {
-							image->setOnePixel(i,j, Pixel(0,0,0)); break;
+							image->setOnePixel(i,j, Pixel(0,0,0));
 						}
 					}
 				}

@@ -43,6 +43,8 @@ public:
 		r_ = r;
 	}
 
+	void luminosity(double);
+
 	Pixel & operator=(const Pixel & pixel);
 
 	friend std::ostream & operator << (std::ostream & st, const Pixel & pixel);
