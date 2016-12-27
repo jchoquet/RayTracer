@@ -12,12 +12,12 @@
 #include <string>
 #include "Camera.h"
 #include "Shape.h"
-#include "Ray3f.h"
+#include "Vector3f.h"
 
 class Scene {
 public:
 	Scene();
-	Scene(Camera&, std::vector<Shape*>, int, Ray3f&);
+	Scene(Camera&, std::vector<Shape*>, int, Vector3f&);
 	~Scene();
 
 	const Camera& getCamera() const {
@@ -26,14 +26,6 @@ public:
 
 	void setCamera(const Camera& camera) {
 		camera_ = camera;
-	}
-
-	const Ray3f& getSource() const {
-		return source_;
-	}
-
-	void setSource(const Ray3f& source) {
-		source_ = source;
 	}
 
 	void render(int, int, char*, int, int, int);
@@ -50,10 +42,18 @@ public:
 		return shapes_;
 	}
 
+	const Vector3f& getSource() const {
+		return source_;
+	}
+
+	void setSource(const Vector3f& source) {
+		source_ = source;
+	}
+
 private:
 	Camera camera_;
 	std::vector<Shape*> shapes_;
-	Ray3f source_;
+	Vector3f source_;
 	int nb_shape_;
 };
 

@@ -28,7 +28,7 @@ Sphere::~Sphere() {
 
 }
 
-bool Sphere::isHit(Ray3f ray, double* distance)
+bool Sphere::isHit(Ray3f ray, double* distance,double* px,double* py, double* pz)
 {
 	// initizialization of all parameters
 	double a,b,c;
@@ -77,6 +77,10 @@ bool Sphere::isHit(Ray3f ray, double* distance)
 	x = xA + d*xB;
 	y = yA + d*yB;
 	z = zA + d*zB;
+
+	*px = x;
+	*py = y;
+	*pz = z;
 
 	newDistance = sqrt(x*x + y*y + z*z);
 

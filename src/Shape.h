@@ -27,7 +27,7 @@ public:
 
 	const Ray3f& reflect(const Ray3f&);
 
-	virtual bool isHit(Ray3f,double*) = 0;
+	virtual bool isHit(Ray3f,double*,double*,double*,double*) = 0;
 
 protected:
 	Material matter_;

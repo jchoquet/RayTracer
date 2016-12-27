@@ -31,7 +31,7 @@ Quad::~Quad()
 }
 
 // With Smit's algorithm
-bool Quad::isHit(Ray3f ray3f, double* distance)
+bool Quad::isHit(Ray3f ray3f, double* distance,double* px,double* py,double* pz)
 {
 	bool res;
 
@@ -130,6 +130,10 @@ bool Quad::isHit(Ray3f ray3f, double* distance)
 		x = xi + d*xc;
 		y = yi + d*yc;
 		z = zi + d*zc;
+
+		*px = x;
+		*py = y;
+		*pz = z;
 
 		newDistance = sqrt(x*x + y*y + z*z);
 

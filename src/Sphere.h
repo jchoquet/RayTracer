@@ -32,7 +32,7 @@ public:
 		radius_ = radius;
 	}
 
-	bool isHit(Ray3f,double*);
+	bool isHit(Ray3f,double*,double*,double*,double*);
 
 private:
 	Vector3f origin_;

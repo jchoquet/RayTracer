@@ -18,12 +18,12 @@
 
 using namespace std;
 
-Scene::Scene() : camera_(Camera()), source_(Ray3f()), nb_shape_(1)
+Scene::Scene() : camera_(Camera()), source_(Vector3f()), nb_shape_(1)
 {
 	shapes_.push_back(new Sphere(Material(255,127,0,0), Vector3f(500,0,0), (float) 50));
 }
 
-Scene::Scene(Camera& camera, std::vector<Shape*> shapes, int nb_shape, Ray3f& source)
+Scene::Scene(Camera& camera, std::vector<Shape*> shapes, int nb_shape, Vector3f& source)
 {
 	camera_ = camera;
 	shapes_ = shapes;
@@ -43,11 +43,15 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 {
 	// initialization of the variable
 	int i,j;
-	bool toChange;;
-	double distance = -1;
-	double* pdistance;
 
-	pdistance = &distance;
+	bool toChange,isHit;
+	double distance, lightDistance;
+	double* pdistance = &distance, *pLightDistance = &lightDistance;
+
+	double x,y,z, lx,ly,lz;
+	double *px = &x,*py = &y,*pz = &z, *plx = &lx, *ply = &ly, *plz = &lz;
+
+
 
 	// creation of the image with associated width and height
 	Image* image = new Image(width, height);
@@ -62,11 +66,26 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 			//cout << y_topleft_image - i << " -- " << z_topleft_image + j << endl;
 
 			for(int k=0; k<shapes_.size(); k++) {
-				toChange = shapes_[k]->isHit(line,pdistance);
-				//cout << " [" << res << "] ";
+				toChange = shapes_[k]->isHit(line,pdistance,px,py,pz);
+				//cout << " [" << toChange << "] ";
 				if (toChange) {
+
+					//cout << x << " " << y << " " << z << endl;
+					Ray3f lightRay (source_, Vector3f(x,y,z));
+
 					Pixel newPix (shapes_[k]->getMatter().getR(), shapes_[k]->getMatter().getG(), shapes_[k]->getMatter().getB());
 					image->setOnePixel(i,j, newPix);
+
+					lightDistance = -1;
+
+					for(int l=5; l<shapes_.size(); l++) {
+						isHit = shapes_[l]->isHit(lightRay,pLightDistance,plx,ply,plz);
+						cout << " [" << isHit << "] ";
+
+						if (isHit) {
+							image->setOnePixel(i,j, Pixel(0,0,0)); break;
+						}
+					}
 				}
 			}
 		}
