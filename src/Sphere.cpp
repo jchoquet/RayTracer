@@ -1,9 +1,8 @@
-/*
- * Sphere.cpp
- *
- *  Created on: 10 oct. 2016
- *      Author: Latha
- */
+/**
+ * \file Sphere.cpp
+ * \brief Implémentation de la classe Shape.
+ * \author Alexandre DE BOE, Julie CHOQUET
+*/
 
 #include <iostream>
 #include <algorithm>

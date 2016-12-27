@@ -1,10 +1,8 @@
-/*
-
- * Ray3f.cpp
- *
- *  Created on: 10 oct. 2016
- *      Author: Latha
- */
+/**
+ * \file Ray3f.cpp
+ * \brief Implémentation de la classe Ray3f.
+ * \author Alexandre DE BOE, Julie CHOQUET
+*/
 
 #include "Ray3f.h"
 

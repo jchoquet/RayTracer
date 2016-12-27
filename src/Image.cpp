@@ -1,9 +1,8 @@
-/*
- * Image.cpp
- *
- *  Created on: 12 oct. 2016
- *      Author: Latha
- */
+/**
+ * \file Image.cpp
+ * \brief Implémentation de la classe Image.
+ * \author Alexandre DE BOE, Julie CHOQUET
+*/
 
 #include <stdexcept>
 #include <iostream>

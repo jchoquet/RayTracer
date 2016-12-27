@@ -1,9 +1,8 @@
-/*
- * Quad.cpp
- *
- *  Created on: 10 oct. 2016
- *      Author: Latha
- */
+/**
+ * \file Quad.cpp
+ * \brief Implémentation de la classe Quad.
+ * \author Alexandre DE BOE, Julie CHOQUET
+*/
 
 #include <algorithm>
 #include <iostream>

@@ -1,9 +1,8 @@
-/*
- * Scene.cpp
- *
- *  Created on: 10 oct. 2016
- *      Author: Latha
- */
+/**
+ * \file Scene.cpp
+ * \brief Implémentation de la classe Scene.
+ * \author Alexandre DE BOE, Julie CHOQUET
+*/
 
 #include <iostream>
 

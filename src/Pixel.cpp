@@ -1,10 +1,8 @@
-/*
- * Pixel.cpp
-
- *
- *  Created on: 12 oct. 2016
- *      Author: Latha
- */
+/**
+ * \file Pixel.cpp
+ * \brief Implémentation de la classe Pixel.
+ * \author Alexandre DE BOE, Julie CHOQUET
+*/
 
 #include <stdexcept>
 #include <iostream>
