@@ -4,7 +4,6 @@
 /** \class Vector3f
  * \brief Vecteur 3D de flottants.
  */
-
 class Vector3f {
 public:
     /**

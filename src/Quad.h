@@ -25,7 +25,6 @@ public:
     */
 	Quad(const Material& matter, Vector3f origin, Vector3f nsize);
 
-
 	/**
     * \brief Destructeur.
     */

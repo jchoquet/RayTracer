@@ -9,13 +9,11 @@
 
 #include "Pixel.h"
 
-Pixel::Pixel() : r_(255), g_(255), b_(255)
-{
-
+Pixel::Pixel() : r_(255), g_(255), b_(255){
 }
 
-Pixel::Pixel(uint8_t r, uint8_t g, uint8_t b)
-{
+Pixel::Pixel(uint8_t r, uint8_t g, uint8_t b){
+
 	if (r<0 || r>255 || g<0 || g>255 || b<0 || b>255)
 	{
 		throw std::runtime_error("Incompatible value : 8bits int required");
@@ -26,13 +24,16 @@ Pixel::Pixel(uint8_t r, uint8_t g, uint8_t b)
 	b_ = b;
 }
 
-Pixel::~Pixel()
-{
-	// Dtor for Pixel
+Pixel::Pixel(const Pixel& pixel) {
+	r_ = pixel.getR();
+	g_ = pixel.getG();
+	b_ = pixel.getB();
 }
 
-void Pixel::luminosity(double level)
-{
+Pixel::~Pixel(){
+}
+
+void Pixel::luminosity(double level){
 	double tempR,tempG,tempB;
 
 	tempR = r_ - level + 155;
@@ -64,14 +65,7 @@ void Pixel::luminosity(double level)
 	}
 }
 
-std::ostream & operator << (std::ostream & st, const Pixel & pixel)
-{
-	st << "[" << pixel.getR() << ", " << pixel.getG() << ", " << pixel.getB() << "]";
-	return st;
-}
-
-Pixel& Pixel::operator =(const Pixel& pixel)
-{
+Pixel& Pixel::operator =(const Pixel& pixel) {
 	r_ = pixel.getR();
 	g_ = pixel.getG();
 	b_ = pixel.getB();
@@ -79,9 +73,7 @@ Pixel& Pixel::operator =(const Pixel& pixel)
 	return *this;
 }
 
-Pixel::Pixel(const Pixel& pixel)
-{
-	r_ = pixel.getR();
-	g_ = pixel.getG();
-	b_ = pixel.getB();
+std::ostream & operator << (std::ostream & st, const Pixel & pixel) {
+	st << "[" << pixel.getR() << ", " << pixel.getG() << ", " << pixel.getB() << "]";
+	return st;
 }

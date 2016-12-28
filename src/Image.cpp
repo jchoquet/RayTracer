@@ -9,22 +9,25 @@
 
 #include "Image.h"
 
-Image::Image() : width_(20), height_(15)
-{
+Image::Image() : width_(20), height_(15){
+    // Création du tableau de pixels
 	pixels_ = new Pixel[300];
-	for (int i=0;i<300;i++)
+
+	// Remplissage du tableau de pixels avec des pixels de couleur blanche
+	for (int i=0; i<300; i++)
 	{
 		pixels_[i] = Pixel(255,255,255);
 	}
 }
 
-Image::Image(int width, int height)
-{
+Image::Image(int width, int height){
+    // Vérification de la validité de la largeur et de la hauteur choisies
 	if (width<1 || height<1)
 	{
 		throw std::runtime_error("Incompatible value : value > 0 required");
 	}
 
+	// Initialisation des paramètres
 	width_ = width;
 	height_ = height;
 	pixels_ = new Pixel[width*height];
@@ -34,29 +37,25 @@ Image::Image(int width, int height)
 	}
 }
 
-Image::Image(const Image& image)
-{
+Image::Image(const Image& image){
 	width_ = image.getWidth();
 	height_ = image.getHeight();
 	pixels_ = new Pixel[width_*height_];
-	for (int i=0;i<width_*height_;i++)
+	for (int i=0; i<width_*height_; i++)
 	{
 		pixels_[i] = image.getOnePixel(i);
 	}
 }
 
-Image::~Image()
-{
+Image::~Image(){
 	delete[] pixels_;
 }
 
-Image& Image::operator =(const Image& image)
-{
+Image& Image::operator =(const Image& image){
 	// TODO operator= pour Image
 }
 
-std::ostream & operator <<(std::ostream & st,const Image & image)
-{
+std::ostream & operator <<(std::ostream & st,const Image & image){
 	for (int i=0; i<image.getHeight()*image.getWidth(); i++)
 	{
 		st << image.getOnePixel(i) << ", ";
