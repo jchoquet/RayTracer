@@ -13,56 +13,63 @@
 
 using namespace std;
 
-Quad::Quad() : Shape(), origin_(Vector3f()), size_(Vector3f())
-{
-
+Quad::Quad() : Shape(), origin_(Vector3f()), size_(Vector3f()){
 }
 
-Quad::Quad(const Material& mater, Vector3f origin, Vector3f size) : Shape (mater)
-{
+Quad::Quad(const Material& matter, Vector3f origin, Vector3f nsize) : Shape(matter) {
 	origin_ = origin;
-	size_ = size;
+	size_ = nsize;
 }
 
-Quad::~Quad()
-{
-
+Quad::~Quad(){
 }
 
-// With Smit's algorithm
-bool Quad::isHit(Ray3f ray3f, double* distance,double* px,double* py,double* pz)
-{
-	bool res;
+bool Quad::isHit(Ray3f ray3f, double* distance, double* px, double* py, double* pz) {
 
-	double d,x,y,z;
+    // Initialisation des variables
+
+	bool res; // Contiendra le résultat (true s'il y a intersection, false sinon)
+
+	double d, x, y, z;
 	double newDistance;
 
-	double x0 = origin_.getX();
-	double y0 = origin_.getY();
-	double z0 = origin_.getZ();
+	double tmin, tmax, tymin, tymax, tzmin, tzmax;
+	double divx, divy, divz;
 
+	// On récupère les coordonnées du centre du cube
+	double x0 = origin_.getX(); // Composante x de l'origine du cube
+	double y0 = origin_.getY(); // Composante y de l'orgine du cube
+	double z0 = origin_.getZ(); // Composante z de l'origine du cube
+
+	// On calcule les coordonnées de l'extrémité du cube grâce au vecteur size_
 	double x1 = x0 + size_.getX();
 	double y1 = y0 + size_.getY();
 	double z1 = z0 + size_.getZ();
 
-	double xc = ray3f.getDirection().getX();
-	double yc = ray3f.getDirection().getY();
-	double zc = ray3f.getDirection().getZ();
-
+	// On récupère les coordonnées de l'origin du rayon considéré
 	double xi = ray3f.getOrigin().getX();
 	double yi = ray3f.getOrigin().getY();
 	double zi = ray3f.getOrigin().getZ();
 
+	// On récupère les coordonnées de la direction du rayon considéré
+	double xc = ray3f.getDirection().getX();
+	double yc = ray3f.getDirection().getY();
+	double zc = ray3f.getDirection().getZ();
+
 	//cout << xc << "/" << x0 << "/" << xi << endl;
 
-	double tmin, tmax, tymin, tymax, tzmin, tzmax, divx, divy, divz;
+	// Algorithme
 
-	if (xc==0) {
-		divx= 1000000;
+	/* Si la composante x de la direction du rayon est égale à 0, on affecte la valeur 1 000 000 à divx
+	*  Sinon, divx devient l'inverse de cette composante
+	*/
+	if (xc == 0){
+		divx = 1000000;
 	} else {
 		divx = 1/xc;
 		//cout << divx << endl;
 	}
+
 	if (divx >= 0) {
 		tmin = (x0-xi)*divx;
 		//cout << tmin << endl;
@@ -73,12 +80,15 @@ bool Quad::isHit(Ray3f ray3f, double* distance,double* px,double* py,double* pz)
 	}
 
 	//cout << tmin << endl;
-
-	if (yc==0) {
-		divy= 1000000;
+    /* Si la composante y de la direction du rayon est égale à 0, on affecte la valeur 1 000 000 à divy
+	*  Sinon, divy devient l'inverse de cette composante
+	*/
+	if (yc == 0) {
+		divy = 1000000;
 	} else {
 		divy = 1/yc;
 	}
+
 	if (divy >= 0) {
 		tymin = (y0-yi)*divy;
 		tymax = (y1-yi)*divy;
@@ -87,11 +97,15 @@ bool Quad::isHit(Ray3f ray3f, double* distance,double* px,double* py,double* pz)
 		tymax = (y0-yi)*divy;
 	}
 
-	if (zc==0) {
+    /* Si la composante z de la direction du rayon est égale à 0, on affecte la valeur 1 000 000 à divz
+	*  Sinon, divz devient l'inverse de cette composante
+	*/
+	if (zc == 0) {
 		divz= 1000000;
 	} else {
 		divz = 1/zc;
 	}
+
 	if (divz >= 0) {
 		tzmin = (z0-zi)*divz;
 		tzmax = (z1-zi)*divz;
@@ -102,25 +116,24 @@ bool Quad::isHit(Ray3f ray3f, double* distance,double* px,double* py,double* pz)
 
 	//cout << tmin << " " << tymin << " " << tzmin << " - " << tmax << " " << tymax << " " << tzmax << endl;
 
-	if (x0==x1) {
+	if (x0 == x1) {
 		//cout << "test" << endl;
-		res = (max(tymin,tzmin)<=min(tymax,tzmax));
-	} else if (y0==y1){
-		res = (max(tmin,tzmin)<=min(tmax,tzmax));
-	} else if (z0==z1){
-		res = (max(tmin,tymin)<=min(tmax,tymax));
+		res = (max(tymin,tzmin) <= min(tymax,tzmax));
+	} else if (y0 == y1){
+		res = (max(tmin,tzmin) <= min(tmax,tzmax));
+	} else if (z0 == z1){
+		res = (max(tmin,tymin) <= min(tmax,tymax));
 	} else {
 		//cout << "test" << endl;
-		res = (max(tmin,max(tymin,tzmin))<=min(tmax,min(tymax,tzmax)));
+		res = (max(tmin,max(tymin,tzmin)) <= min(tmax,min(tymax,tzmax)));
 	}
 
 	if (res) {
-
-		if ((x1-x0)<2) {
+		if ((x1-x0) < 2) {
 			d = tmin;
-		} else if ((y1-y0)<2) {
+		} else if ((y1-y0) < 2) {
 			d = tymin;
-		} else if ((z1-z0)<2) {
+		} else if ((z1-z0) < 2) {
 			d = tzmin;
 		} else {
 			d = max(tmin,max(tymin,tzmin));

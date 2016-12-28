@@ -12,23 +12,19 @@
 
 using namespace std;
 
-Sphere::Sphere() : Shape(), origin_(Vector3f()), radius_(0)
-{
-
+Sphere::Sphere() : Shape(), origin_(Vector3f()), radius_(0){
 }
 
-Sphere::Sphere(const Material& mater,const Vector3f& origin, float radius) : Shape(mater) {
-
+Sphere::Sphere(const Material& matter, const Vector3f& origin, float radius) : Shape(mater) {
 	origin_ = origin;
 	radius_ = radius;
 }
 
 Sphere::~Sphere() {
-
 }
 
-bool Sphere::isHit(Ray3f ray, double* distance,double* px,double* py, double* pz)
-{
+bool Sphere::isHit(Ray3f ray, double* distance, double* px, double* py, double* pz) {
+
 	// initizialization of all parameters
 	double a,b,c;
 	double delta;
