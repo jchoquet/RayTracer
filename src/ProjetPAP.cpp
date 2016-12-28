@@ -44,7 +44,6 @@ int main() {
 	tab_S.push_back(new Sphere(Material(155,127,220,0), Vector3f(5200,1200,0), (float) 300)); // sphere
 	tab_S.push_back(new Sphere(Material(255,127,0,0), Vector3f(4800,0,0), (float) 800)); // sphere
 
-
 	// Initialisation de la scène
 	Scene scene(cam, tab_S, nb_shape, source);
 

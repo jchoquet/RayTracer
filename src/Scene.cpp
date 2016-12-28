@@ -18,40 +18,35 @@
 
 using namespace std;
 
-Scene::Scene() : camera_(Camera()), source_(Vector3f()), nb_shape_(1)
-{
+Scene::Scene() : camera_(Camera()), source_(Vector3f()), nb_shape_(1) {
 	shapes_.push_back(new Sphere(Material(255,127,0,0), Vector3f(500,0,0), (float) 50));
 }
 
-Scene::Scene(Camera& camera, std::vector<Shape*> shapes, int nb_shape, Vector3f& source)
-{
+Scene::Scene(Camera& camera, std::vector<Shape*> shapes, int nb_shape, Vector3f& source){
 	camera_ = camera;
 	shapes_ = shapes;
 	source_ = source;
 	nb_shape_ = nb_shape;
 }
 
-Scene::~Scene()
-{
+Scene::~Scene(){
 	for (int i=0;i<shapes_.size();i++) {
 		delete shapes_[i];
 	}
 	shapes_.shrink_to_fit();
 }
 
-void Scene::render(int width, int height, char* name, int x_image, int y_topleft_image, int z_topleft_image )
+void Scene::render(int width, int height, char* name, int x_image, int y_topleft_image, int z_topleft_image)
 {
 	// initialization of the variable
-	int i,j;
+	int i, j;
 
-	bool toChange,isHit;
+	bool toChange, isHit;
 	double distance, lightDistance, shadowDistance;
 	double* pdistance = &distance, *pLightDistance = &lightDistance;
 
-	double x,y,z, lx,ly,lz;
-	double *px = &x,*py = &y,*pz = &z, *plx = &lx, *ply = &ly, *plz = &lz;
-
-
+	double x, y, z, lx, ly, lz;
+	double *px = &x,*py = &y, *pz = &z, *plx = &lx, *ply = &ly, *plz = &lz;
 
 	// creation of the image with associated width and height
 	Image* image = new Image(width, height);
@@ -61,7 +56,7 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 			Ray3f line (camera_.getPosition(), Vector3f(x_image, (y_topleft_image - i), (z_topleft_image + j)));
 
 			distance = -1;
-			image->setOnePixel(i,j, Pixel(000,127,255));
+			image->setOnePixel(i, j, Pixel(000,127,255));
 
 			//cout << y_topleft_image - i << " -- " << z_topleft_image + j << endl;
 
@@ -105,7 +100,4 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 
 	// we save the image to an png file
 	save_png_to_file(image, (char *) name);
-
 }
-
-

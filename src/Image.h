@@ -20,7 +20,8 @@ public:
 
     /**
     * \brief Constructeur.
-    * \details Créé une image définie par la hauteur et la largeur passées en argument. Le tableau de pixels correspondant est créé et rempli de pixels de couleur blanche (255,255,255).
+    * \details Créé une image définie par la hauteur et la largeur passées en argument.
+    * Le tableau de pixels correspondant est créé et rempli de pixels de couleur blanche (255,255,255).
     * \exception std::runtime_error si la largeur ou la hauteur est inférieure à 1.
     * \param width : Valeur initiale de la largeur de l'image width_.
     * \param height : Valeur initiale de la hauteur de l'image height_.
