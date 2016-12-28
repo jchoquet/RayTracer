@@ -15,7 +15,7 @@ using namespace std;
 Sphere::Sphere() : Shape(), origin_(Vector3f()), radius_(0){
 }
 
-Sphere::Sphere(const Material& matter, const Vector3f& origin, float radius) : Shape(mater) {
+Sphere::Sphere(const Material& matter, const Vector3f& origin, float radius) : Shape(matter) {
 	origin_ = origin;
 	radius_ = radius;
 }

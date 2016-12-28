@@ -31,7 +31,7 @@ public:
     * \param width : Valeur initiale de la largeur de l'image width_.
     * \param height : Valeur initiale de la hauteur de l'image height_.
     */
-	Scene(CCamera& camera, std::vector<Shape*> shapes, int nb_shape, Vector3f& source);
+	Scene(Camera& camera, std::vector<Shape*> shapes, int nb_shape, Vector3f& source);
 
 	/**
     * \brief Destructeur.
