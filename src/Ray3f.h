@@ -60,8 +60,8 @@ public:
 	}
 
 private:
-	Vector3f origin_; /*!< Vecteur 3D origine*/
-	Vector3f direction_; /*!< Vecteur 3D direction*/
+	Vector3f origin_; /*!< Vecteur 3D contenant l'origine du rayon*/
+	Vector3f direction_; /*!< Vecteur 3D contenant la direction du rayon*/
 };
 
 #endif /* RAY3F_H_ */
