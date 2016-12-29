@@ -23,19 +23,39 @@ using namespace std;
 
 int main() {
 
-	// Déclaration des différents paramètres
-	int nb_shape = 7;
+	/*
+	 * Initialisation des différents paramètres de l'image
+	 */
+
+    // Taille de l'image
 	int height = 2800;
 	int width = 2800;
+
+	// Position de l'image
 	int x_image = 800;
 	int y_topleft_image = 1400;
 	int z_topleft_image = -1400;
 
-	// Initialisation des différents élèments composant la scène
+	/*
+	 * Initialisation des différents paramètres de la scène
+	 */
+
+	// Nombre d'objets présents sur la scène
+    int nb_shape = 7;
+
+	// Création de la caméra
 	Camera cam(Vector3f(0,0,0),Vector3f(0,0,0));
+
+	// Création de la source de lumière
 	Vector3f source(2800,0,-3598);
+
+	// Création du tableau d'objets contenant nb_shape objets
 	vector<Shape*> tab_S;
 	tab_S.reserve(nb_shape);
+
+	/*
+	 * Ajout des objets
+	 */
 	tab_S.push_back(new Quad(Material(147,207,220,0), Vector3f(2000,-3600,-3600), Vector3f(4000,1,7200))); // panneau de droite
 	tab_S.push_back(new Quad(Material(147,207,220,0), Vector3f(2000, 3600,-3600), Vector3f(4000,1,7200))); // panneau de gauche
 	tab_S.push_back(new Quad(Material(147,207,220,0), Vector3f(2000, -3600,3600), Vector3f(4000,7200,1))); // panneau du bas
@@ -48,7 +68,7 @@ int main() {
 	Scene scene(cam, tab_S, nb_shape, source);
 
 	// Calcul de l'image et sauvegarde
-	scene.render(height,width,"hello.png", x_image, y_topleft_image, z_topleft_image);
+	scene.render(height, width, "rendu.png", x_image, y_topleft_image, z_topleft_image);
 
 	return 0;
 }
