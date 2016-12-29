@@ -62,15 +62,16 @@ public:
 		size_ = nsize;
 	}
 
-	/**
-    * \brief Intersection entre le cube et un rayon.
-    * \details Utilise l'algorithme de Brian Smits.
+    /**
+    * \brief  Intersection entre le cube et un rayon.
+    * \details Utilise l'algorithme de Brian Smits. Calcul l'intersection et vérifie qu'elle est à une distance moins élevée que la précédente grâce
+    * au paramètre distance. Si les conditions sont respéctées, les coordonnées du point d'intersection seront stockées dans les pointeurs passés en argument.
     * \param ray3f : rayon dont on teste l'intersection avec le cube
-    * \param distance :
-    * \param px :
-    * \param py :
-    * \param pz :
-    * \return true si le rayon intersecte le cube sinon false
+    * \param distance : Distance entre le rayon d'origine et le précèdent point d'intersection.
+    * \param px : Pointeur vers un double contenant l'abscisse du précédent point d'intersection.
+    * \param py : Pointeur vers un double contenant l'ordonnée du précédent point d'intersection.
+    * \param pz : Pointeur vers un double contenant la profondeur du précédent point d'intersection.
+    * \return true si le rayon intersecte le cube et que sa distance avec l'origine du rayon et inférieure à celle pointée dans distance, sinon false
     */
 	bool isHit(Ray3f ray3f, double* distance, double* px, double* py, double* pz);
 

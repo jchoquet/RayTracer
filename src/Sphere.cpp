@@ -25,9 +25,9 @@ Sphere::~Sphere() {
 
 bool Sphere::isHit(Ray3f ray, double* distance, double* px, double* py, double* pz) {
 
-    /* Initialisation des variables */
+  /* Initialisation des variables */
 
-    // Variables pour la résolution de l'équation paramétrique d'intersection
+  // Variables pour la résolution de l'équation paramétrique d'intersection
 	double a, b, c;
 	double delta;
 
@@ -58,7 +58,7 @@ bool Sphere::isHit(Ray3f ray, double* distance, double* px, double* py, double* 
 	b = 2*((xB-xA)*(xA-xC)+(yB-yA)*(yA-yC)+(zB-zA)*(zA-zC));
 	c = (xA-xC)*(xA-xC) + (yA-yC)*(yA-yC) + (zA-zC)*(zA-zC) - r*r;
 
-	// Calcul du discrimintant
+	// Calcul du discriminant
 	delta = b*b - 4*a*c;
 
 	/*if (yB == 0 && zB == 0) {

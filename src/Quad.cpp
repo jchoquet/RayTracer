@@ -26,20 +26,17 @@ Quad::~Quad(){
 
 bool Quad::isHit(Ray3f ray3f, double* distance, double* px, double* py, double* pz) {
 
-    // Initialisation des variables
+  /* Initialisation des variables */
 
-	bool res; // Contiendra le résultat (true s'il y a intersection, false sinon)
+	bool res; // Variable résultat
 
-	double d, x, y, z;
-	double newDistance;
-
-	double tmin, tmax, tymin, tymax, tzmin, tzmax;
-	double divx, divy, divz;
+	double newDistance; // Contiendra la distance entre l'origine du rayon et l'intersection
+	double d, x, y, z; // Calcul des coordonnées de l'intersection
 
 	// On récupère les coordonnées du centre du cube
-	double x0 = origin_.getX(); // Composante x de l'origine du cube
-	double y0 = origin_.getY(); // Composante y de l'orgine du cube
-	double z0 = origin_.getZ(); // Composante z de l'origine du cube
+	double x0 = origin_.getX();
+	double y0 = origin_.getY();
+	double z0 = origin_.getZ();
 
 	// On calcule les coordonnées de l'extrémité du cube grâce au vecteur size_
 	double x1 = x0 + size_.getX();
@@ -56,37 +53,24 @@ bool Quad::isHit(Ray3f ray3f, double* distance, double* px, double* py, double* 
 	double yc = ray3f.getDirection().getY();
 	double zc = ray3f.getDirection().getZ();
 
+	// Variables nécessaires à l'application de la méthode de la dalle
+	double tmin, tmax, tymin, tymax, tzmin, tzmax;
+	double divx = ray3f.getInvDirection().getX();
+	double divy = ray3f.getInvDirection().getY();
+	double divz = ray3f.getInvDirection().getZ();
+
 	//cout << xc << "/" << x0 << "/" << xi << endl;
 
-	// Algorithme
+	/* Calcul de l'intersection entre le rayon et le cube avec la méthode de la dalle */
 
-	/* Si la composante x de la direction du rayon est égale à 0, on affecte la valeur 1 000 000 à divx
-	*  Sinon, divx devient l'inverse de cette composante
-	*/
-	if (xc == 0){
-		divx = 1000000;
-	} else {
-		divx = 1/xc;
-		//cout << divx << endl;
-	}
+	// Pour chaque coordonnée, on détermine la borne inférieure et la borne supérieure
 
 	if (divx >= 0) {
 		tmin = (x0-xi)*divx;
-		//cout << tmin << endl;
 		tmax = (x1-xi)*divx;
 	} else {
 		tmin = (x1-xi)*divx;
 		tmax = (x0-xi)*divx;
-	}
-
-	//cout << tmin << endl;
-    /* Si la composante y de la direction du rayon est égale à 0, on affecte la valeur 1 000 000 à divy
-	*  Sinon, divy devient l'inverse de cette composante
-	*/
-	if (yc == 0) {
-		divy = 1000000;
-	} else {
-		divy = 1/yc;
 	}
 
 	if (divy >= 0) {
@@ -95,15 +79,6 @@ bool Quad::isHit(Ray3f ray3f, double* distance, double* px, double* py, double* 
 	} else {
 		tymin = (y1-yi)*divy;
 		tymax = (y0-yi)*divy;
-	}
-
-    /* Si la composante z de la direction du rayon est égale à 0, on affecte la valeur 1 000 000 à divz
-	*  Sinon, divz devient l'inverse de cette composante
-	*/
-	if (zc == 0) {
-		divz= 1000000;
-	} else {
-		divz = 1/zc;
 	}
 
 	if (divz >= 0) {
@@ -116,19 +91,21 @@ bool Quad::isHit(Ray3f ray3f, double* distance, double* px, double* py, double* 
 
 	//cout << tmin << " " << tymin << " " << tzmin << " - " << tmax << " " << tymax << " " << tzmax << endl;
 
+	// On détermine s'il existe une intersection avec la méthode de la dalle
+
 	if (x0 == x1) {
-		//cout << "test" << endl;
 		res = (max(tymin,tzmin) <= min(tymax,tzmax));
 	} else if (y0 == y1){
 		res = (max(tmin,tzmin) <= min(tmax,tzmax));
 	} else if (z0 == z1){
 		res = (max(tmin,tymin) <= min(tmax,tymax));
 	} else {
-		//cout << "test" << endl;
 		res = (max(tmin,max(tymin,tzmin)) <= min(tmax,min(tymax,tzmax)));
 	}
 
+	// S'il existe une intersection, on calcule le point d'intersection
 	if (res) {
+
 		if ((x1-x0) < 2) {
 			d = tmin;
 		} else if ((y1-y0) < 2) {
@@ -139,22 +116,24 @@ bool Quad::isHit(Ray3f ray3f, double* distance, double* px, double* py, double* 
 			d = max(tmin,max(tymin,tzmin));
 		}
 
+		// Injection du paramètre d dans l'équation du rayon
 		x = xi + d*xc;
 		y = yi + d*yc;
 		z = zi + d*zc;
 
+		// On fait pointer vers les coordonnées d'intersection
 		*px = x;
 		*py = y;
 		*pz = z;
 
+		// Calcul de la distance entre l'origine du rayon et le point d'intersection
 		newDistance = sqrt(x*x + y*y + z*z);
 
+		// On compare la distance trouvée avec celle de la précedente intersection
 		if (*distance < 0 || newDistance < *distance) {
 			*distance = newDistance;
-			//cout << "test" << endl;
 			return true;
 		} else {
-			//cout << "bouh" << endl;
 			return false;
 		}
 	}

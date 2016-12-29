@@ -98,9 +98,9 @@ public:
     /**
     * \brief Rendu de la scène.
     * \details Crée et sauvegarde l'image correspondant à la scène. La taille et le nom du fichier sont spécifiés.
-    * \param width :
-    * \param height :
-    * \param name :
+    * \param width : Largeur de l'image souhaitée.
+    * \param height : Longueur de l'image souhaitée.
+    * \param name : Nom du fichier final.
     * \param x_image :
     * \param y_topleft_image :
     * \param z_topleft_image :
