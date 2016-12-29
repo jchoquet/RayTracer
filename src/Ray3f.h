@@ -10,7 +10,7 @@ class Ray3f {
 public:
     /**
     * \brief Constructeur par défaut.
-    * \details Initialise les coordonnées des vecteurs origine_ et direction_ à 0.
+    * \details Initialise les coordonnées des vecteurs origine_ et direction_ à 0. Les coordonnées du vecteur inv_direction_ sont initialisées à 1000000.
     */
 	Ray3f();
 
@@ -59,9 +59,18 @@ public:
 		origin_ = origin;
 	}
 
+	/**
+    * \brief Accesseur pour le vecteur inv_direction_.
+    * \return Une référence constante vers la valeur du vecteur contenant les coordonnées inverses à celles de celui de direction.
+    */
+	const Vector3f& getInvDirection() const {
+		return inv_direction_;
+	}
+
 private:
-	Vector3f origin_; /*!< Vecteur 3D origine*/
-	Vector3f direction_; /*!< Vecteur 3D direction*/
+	Vector3f origin_; /*!< Vecteur 3D contenant l'origine du rayon*/
+	Vector3f direction_; /*!< Vecteur 3D contenant la direction du rayon*/
+	Vector3f inv_direction_; /*!< Vecteur 3D contenant les coordonnées inverses de celles du vecteur de direction*/
 };
 
 #endif /* RAY3F_H_ */

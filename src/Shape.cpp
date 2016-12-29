@@ -6,9 +6,7 @@
 
 #include "Shape.h"
 
-Shape::Shape() : matter_(Material())
-{
-
+Shape::Shape() : matter_(Material()) {
 }
 
 Shape::Shape(const Material& matter) {
@@ -16,7 +14,6 @@ Shape::Shape(const Material& matter) {
 }
 
 Shape::~Shape() {
-
 }
 
 const Ray3f& Shape::reflect(const Ray3f& ray) {
