@@ -44,6 +44,8 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 	// initialization of the variable
 	int i,j;
 
+	double r,g,b;
+
 	bool toChange,isHit;
 	double distance, lightDistance, shadowDistance;
 	double* pdistance = &distance, *pLightDistance = &lightDistance;
@@ -100,7 +102,19 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 
 						if (isHit) {
 							//if (line.getDirection().getY() == 0 && line.getDirection().getZ() == 0) {cout << "[" << isHit << "]" << endl;}
-							image->setOnePixel(i,j, Pixel(0,0,0));
+							r = .5*image->getOnePixel(i,j).getR();
+							g = .5*image->getOnePixel(i,j).getG();
+							b = .5*image->getOnePixel(i,j).getB();
+
+							if (r<0) {
+								r = 0;
+							} else if (g<0) {
+								g = 0;
+							} else if (g<0) {
+								b = 0;
+							}
+
+							image->setOnePixel(i,j, Pixel(r,g,b));
 						}
 					}
 				}
