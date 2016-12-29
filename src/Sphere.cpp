@@ -107,6 +107,8 @@ bool Sphere::isHit(Ray3f ray, double* distance,double* px,double* py, double* pz
 	// si la nouvelle intersection est la meme qu'avant --> l'intersection était celle la plus proche de la lumiere --> face eclairée
 	if (d>0.99 && d<1.01) {
 		return false;
+	} else if (d<0) { // détection de la direction du rayon pour éviter les ombres doubles
+		return false;
 	}
 
 	*px = x;

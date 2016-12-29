@@ -33,7 +33,7 @@ int main() {
 
 	// Initialisation des différents élèments composant la scène
 	Camera cam(Vector3f(0,0,0),Vector3f(0,0,0));
-	Vector3f source(2800,0,-3598);
+	Vector3f source(5800,0,-3598);
 	vector<Shape*> tab_S;
 	tab_S.reserve(nb_shape);
 	tab_S.push_back(new Quad(Material(147,207,220,0), Vector3f(2000,-3600,-3600), Vector3f(4000,1,7200))); // panneau de droite
@@ -42,7 +42,7 @@ int main() {
 	tab_S.push_back(new Quad(Material(147,207,220,0), Vector3f(2000, -3600,-3600), Vector3f(4000,7200,1))); // panneau du haut
 	tab_S.push_back(new Quad(Material(147,207,220,0), Vector3f(6000, -3600,-3600), Vector3f(1,7200,7200))); // panneau du fond
 	//tab_S.push_back(new Sphere(Material(155,127,220,0), Vector3f(4800,0,0), (float) 300)); // sphere
-	tab_S.push_back(new Sphere(Material(255,127,0,0), Vector3f(4800,0,0), (float) 800)); // sphere
+	tab_S.push_back(new Sphere(Material(255,127,0,0), Vector3f(4800,800,0), (float) 800)); // sphere
 
 
 	// Initialisation de la scène
