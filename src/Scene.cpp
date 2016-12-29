@@ -66,33 +66,40 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 			//cout << y_topleft_image - i << " -- " << z_topleft_image + j << endl;
 
 			for(int k=0; k<shapes_.size(); k++) {
+				//if (line.getDirection().getY() == 0 && line.getDirection().getZ() == 0) {cout << distance << " @ " << x << "/" << y << "/" << z << endl;}
 				toChange = shapes_[k]->isHit(line,pdistance,px,py,pz);
+				//if (line.getDirection().getY() == 0 && line.getDirection().getZ() == 0) {cout << distance << " @ " << x << "/" << y << "/" << z << "//" << endl;}
 				//cout << " [" << toChange << "] ";
 				if (toChange) {
 
 					//cout << x << " " << y << " " << z << endl;
 					Ray3f lightRay (source_, Vector3f(x,y,z));
 
+
 					shadowDistance = sqrt((x-source_.getX())*(x-source_.getX()) + (y-source_.getY())*(y-source_.getY()) + (z-source_.getZ())*(z-source_.getZ()));
 
 					Pixel newPix (shapes_[k]->getMatter().getR(), shapes_[k]->getMatter().getG(), shapes_[k]->getMatter().getB());
 
-					// the calculation of the light is separate in two functions to avoid to much light around the light source
+					// the computation of the light is separate in two functions to avoid to much light around the light source
 					if (shadowDistance < 750) {
 						newPix.luminosity(0.2*shadowDistance-55);
 					} else {
 						newPix.luminosity(0.02*shadowDistance+80);
 					}
 
+					//if (line.getDirection().getY() == 0 && line.getDirection().getZ() == 0) {cout << (int) newPix.getR() << "[" << (int) newPix.getG() << "]" << (int) newPix.getB() << endl;}
+
 					image->setOnePixel(i,j, newPix);
 
 					lightDistance = -1;
 
 					for(int l=5; l<shapes_.size(); l++) {
+						//cout << lightRay.getDirection().getX() << " - " << lightRay.getDirection().getY() << " - " << lightRay.getDirection().getZ() << endl;
 						isHit = shapes_[l]->isHit(lightRay,pLightDistance,plx,ply,plz);
-						//cout << isHit << endl;
+						//if (line.getDirection().getY() == 0 && line.getDirection().getZ() == 0) {cout << "[" << isHit << "]" << endl;}
 
 						if (isHit) {
+							//if (line.getDirection().getY() == 0 && line.getDirection().getZ() == 0) {cout << "[" << isHit << "]" << endl;}
 							image->setOnePixel(i,j, Pixel(0,0,0));
 						}
 					}
@@ -100,8 +107,6 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 			}
 		}
 	}
-
-	cout << endl;
 
 	// we save the image to an png file
 	save_png_to_file(image, (char *) name);

@@ -45,13 +45,13 @@ bool Quad::isHit(Ray3f ray3f, double* distance,double* px,double* py,double* pz)
 	double y1 = y0 + size_.getY();
 	double z1 = z0 + size_.getZ();
 
-	double xc = ray3f.getDirection().getX();
-	double yc = ray3f.getDirection().getY();
-	double zc = ray3f.getDirection().getZ();
-
 	double xi = ray3f.getOrigin().getX();
 	double yi = ray3f.getOrigin().getY();
 	double zi = ray3f.getOrigin().getZ();
+
+	double xc = ray3f.getDirection().getX()-xi;
+	double yc = ray3f.getDirection().getY()-yi;
+	double zc = ray3f.getDirection().getZ()-zi;
 
 	//cout << xc << "/" << x0 << "/" << xi << endl;
 

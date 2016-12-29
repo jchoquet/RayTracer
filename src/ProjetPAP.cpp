@@ -41,7 +41,7 @@ int main() {
 	tab_S.push_back(new Quad(Material(147,207,220,0), Vector3f(2000, -3600,3600), Vector3f(4000,7200,1))); // panneau du bas
 	tab_S.push_back(new Quad(Material(147,207,220,0), Vector3f(2000, -3600,-3600), Vector3f(4000,7200,1))); // panneau du haut
 	tab_S.push_back(new Quad(Material(147,207,220,0), Vector3f(6000, -3600,-3600), Vector3f(1,7200,7200))); // panneau du fond
-	tab_S.push_back(new Sphere(Material(155,127,220,0), Vector3f(5200,1200,0), (float) 300)); // sphere
+	//tab_S.push_back(new Sphere(Material(155,127,220,0), Vector3f(4800,0,0), (float) 300)); // sphere
 	tab_S.push_back(new Sphere(Material(255,127,0,0), Vector3f(4800,0,0), (float) 800)); // sphere
 
 
