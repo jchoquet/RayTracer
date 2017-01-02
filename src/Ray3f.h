@@ -67,6 +67,14 @@ public:
 		return inv_direction_;
 	}
 
+	/**
+	* \brief Mutateur pour le vecteur inv_direction_.
+	* \param un nouveau vecteur pour inv_direction
+	*/
+	void setInvDirection(const Vector3f& invDirection) {
+		inv_direction_ = invDirection;
+	}
+
 private:
 	Vector3f origin_; /*!< Vecteur 3D contenant l'origine du rayon*/
 	Vector3f direction_; /*!< Vecteur 3D contenant la direction du rayon*/

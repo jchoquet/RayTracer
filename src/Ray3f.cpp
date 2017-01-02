@@ -6,10 +6,10 @@
 
 #include "Ray3f.h"
 
-Ray3f::Ray3f() : origin_(Vector3f()), direction_(Vector3f()), inv_direction_(Vector3f(1000000,1000000,1000000)) {
+Ray3f::Ray3f() : origin_(Vector3f()), direction_(Vector3f()), inv_direction_(Vector3f()) {
 }
 
-Ray3f::Ray3f(Vector3f origin, Vector3f direction) : inv_direction_(Vector3f(1000000,1000000,1000000)){
+Ray3f::Ray3f(Vector3f origin, Vector3f direction) : inv_direction_(Vector3f()){
 	float x, y, z;
 
 	origin_ = origin;

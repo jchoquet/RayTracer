@@ -43,28 +43,18 @@ bool Quad::isHit(Ray3f ray3f, double* distance, double* px, double* py, double* 
 	double y1 = y0 + size_.getY();
 	double z1 = z0 + size_.getZ();
 
-<<<<<<< HEAD
-	double xi = ray3f.getOrigin().getX();
-	double yi = ray3f.getOrigin().getY();
-	double zi = ray3f.getOrigin().getZ();
-=======
 	// On récupère les coordonnées de l'origin du rayon considéré
 	double xi = ray3f.getOrigin().getX();
 	double yi = ray3f.getOrigin().getY();
 	double zi = ray3f.getOrigin().getZ();
 
-	// On récupère les coordonnées de la direction du rayon considéré
-	double xc = ray3f.getDirection().getX();
-	double yc = ray3f.getDirection().getY();
-	double zc = ray3f.getDirection().getZ();
-
 	// Variables nécessaires à l'application de la méthode de la dalle
 	double tmin, tmax, tymin, tymax, tzmin, tzmax;
-	double divx = ray3f.getInvDirection().getX();
-	double divy = ray3f.getInvDirection().getY();
-	double divz = ray3f.getInvDirection().getZ();
->>>>>>> 35c90cc1f461494b701e3954e2875ddea479bee0
+	double divx = (ray3f.getInvDirection().getX() != 0) ? ray3f.getInvDirection().getX() : 1000000;
+	double divy = (ray3f.getInvDirection().getY() != 0) ? ray3f.getInvDirection().getY() : 1000000;
+	double divz = (ray3f.getInvDirection().getZ() != 0) ? ray3f.getInvDirection().getZ() : 1000000;
 
+	// On récupère les coordonnées de la direction du rayon considéré
 	double xc = ray3f.getDirection().getX()-xi;
 	double yc = ray3f.getDirection().getY()-yi;
 	double zc = ray3f.getDirection().getZ()-zi;

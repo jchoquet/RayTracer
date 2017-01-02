@@ -95,7 +95,8 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 					// Création d'un pixel de la même couleur que le matériel composant l'objet
 					Pixel newPix (shapes_[k]->getMatter().getR(), shapes_[k]->getMatter().getG(), shapes_[k]->getMatter().getB());
 
-					// the computation of the light is separate in two functions to avoid to much light around the light source
+					// On calcule l'impact de la luminosité en tenant compte de la distance avec la source de lumière
+					// Cela permet d'éviter une luminosité trop importante près de la source
 					if (shadowDistance < 750) {
 						newPix.luminosity(0.2*shadowDistance-55);
 					} else {
@@ -103,7 +104,6 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 					}
 
 					//if (line.getDirection().getY() == 0 && line.getDirection().getZ() == 0) {cout << (int) newPix.getR() << "[" << (int) newPix.getG() << "]" << (int) newPix.getB() << endl;}
-
 					image->setOnePixel(i,j, newPix);
 
 					// On vérifie que le rayon lightRay ne rencontre pas d'autre objet avant le point d'intersection
@@ -113,6 +113,7 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 						//cout << lightRay.getDirection().getX() << " - " << lightRay.getDirection().getY() << " - " << lightRay.getDirection().getZ() << endl;
 						isHit = shapes_[l]->isHit(lightRay,pLightDistance,plx,ply,plz);
 						//if (line.getDirection().getY() == 0 && line.getDirection().getZ() == 0) {cout << "[" << isHit << "]" << endl;}
+
 
 						if (isHit) {
 							//if (line.getDirection().getY() == 0 && line.getDirection().getZ() == 0) {cout << "[" << isHit << "]" << endl;}
@@ -132,22 +133,11 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 						}
 					}
 
-					if(!isHit) {
-                        // On calcule l'impact de la luminosité en tenant compte de la distance avec la source de lumière
-                        // Cela permet d'éviter une luminosité trop importante près de la source
-                        if (shadowDistance < 750) {
-                            newPix.luminosity(0.2*shadowDistance-55);
-                        } else {
-						newPix.luminosity(0.02*shadowDistance+80);
-                        }
-                        image->setOnePixel(i, j, newPix);
-					}
-
 				} // Fin de la boucle suite à une intersection avec un objet
 			} // Fin de la boucle de parcours du tableau d'objets
 		} // Fin de la boucle sur la largeur de l'image
 	} // Fin de la boucle sur la hauteur de l'image
 
-	// Sauvegarde de l'image dans un fichier png
+	// Sauvegarde de l'image dans un fichier pngg
 	save_png_to_file(image, (char *) name);
 }
