@@ -130,6 +130,8 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 							}
 
 							image->setOnePixel(i,j, Pixel(r,g,b));
+
+							break;
 						}
 					}
 

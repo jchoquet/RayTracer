@@ -106,11 +106,11 @@ bool Quad::isHit(Ray3f ray3f, double* distance, double* px, double* py, double* 
 	// S'il existe une intersection, on calcule le point d'intersection
 	if (res) {
 
-		if ((x1-x0) < 2) {
+		if (abs(x1-x0) < 2) {
 			d = tmin;
-		} else if ((y1-y0) < 2) {
+		} else if (abs(y1-y0) < 2) {
 			d = tymin;
-		} else if ((z1-z0) < 2) {
+		} else if (abs(z1-z0) < 2) {
 			d = tzmin;
 		} else {
 			d = max(tmin,max(tymin,tzmin));

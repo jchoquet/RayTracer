@@ -5,10 +5,11 @@
  *
  * \details Créé la scène et l'image de rendu puis la sauvegarde.
  *
-*/
+ */
 
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 #include "Scene.h"
 #include "Vector3f.h"
@@ -21,16 +22,13 @@
 
 using namespace std;
 
-/**
-* \brief Fonction principale du projet.
-*/
 int main() {
 
 	/*
 	 * Initialisation des différents paramètres de l'image
 	 */
 
-    // Taille de l'image
+	// Taille de l'image
 	int height = 2800;
 	int width = 2800;
 
@@ -44,7 +42,7 @@ int main() {
 	 */
 
 	// Nombre d'objets présents sur la scène
-    int nb_shape = 7;
+	int nb_shape = 12;
 
 	// Création de la caméra
 	Camera cam(Vector3f(0,0,0),Vector3f(0,0,0));
@@ -64,8 +62,15 @@ int main() {
 	tab_S.push_back(new Quad(Material(147,207,220,0), Vector3f(2000, -3600,3600), Vector3f(4000,7200,1))); // panneau du bas
 	tab_S.push_back(new Quad(Material(147,207,220,0), Vector3f(2000, -3600,-3600), Vector3f(4000,7200,1))); // panneau du haut
 	tab_S.push_back(new Quad(Material(147,207,220,0), Vector3f(6000, -3600,-3600), Vector3f(1,7200,7200))); // panneau du fond
-	//tab_S.push_back(new Sphere(Material(155,127,220,0), Vector3f(4800,0,0), (float) 300)); // sphere
-	tab_S.push_back(new Sphere(Material(255,127,0,0), Vector3f(4800,800,0), (float) 800)); // sphere
+
+	tab_S.push_back(new Sphere(Material(255,127,0,0.72), Vector3f(4200,1800,2600), (float) 800)); // sphere
+
+	tab_S.push_back(new Quad(Material(192,120,220,0), Vector3f(4000,-2500,-1200), Vector3f(500,1,1800))); // panneau de droite du cube
+	tab_S.push_back(new Quad(Material(192,120,220,0), Vector3f(4000, -700,-1200), Vector3f(500,1,1800))); // panneau de gauche du cube
+	tab_S.push_back(new Quad(Material(192,120,220,0), Vector3f(4000, -2500,600), Vector3f(500,1800,1))); // panneau du bas du cube
+	tab_S.push_back(new Quad(Material(192,120,220,0), Vector3f(4000, -2500,-1200), Vector3f(500,1800,1))); // panneau du haut du cube
+	tab_S.push_back(new Quad(Material(192,120,220,0), Vector3f(4000, -2500,-1200), Vector3f(1,1800,1800))); // panneau du fond du cube
+	tab_S.push_back(new Quad(Material(192,120,220,0), Vector3f(4000, -2500, -1200), Vector3f(1,1800,1800))); // panneau du devant du cube
 
 	// Initialisation de la scène
 	Scene scene(cam, tab_S, nb_shape, source);
