@@ -10,10 +10,7 @@
 #include <png.h>
 
 #include "libpng.h"
-
 #include "Pixel.h"
-
-/* Write "bitmap" to a PNG file specified by "path"; returns 0 on success, non-zero on error. */
 
 int save_png_to_file (Image * bitmap, const char *path)
 {
