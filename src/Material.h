@@ -17,10 +17,10 @@ public:
 	/**
     * \brief Constructeur.
     * \details Initialise les composantes de couleurs et le coefficient de luminosité avec les valeurs passées en argument.
-    * \param r : Valeur initiale de la composante rouge r_ de la couleur.
-    * \param g : Valeur initiale de la composante verte g_ de la couleur.
-    * \param b : Valeur initiale de la composante bleue b_ de la couleur.
-    * \param shininess : Valeur initiale du coefficient de luminosité shininess_.
+    * \param r  Valeur initiale de la composante rouge r_ de la couleur.
+    * \param g  Valeur initiale de la composante verte g_ de la couleur.
+    * \param b  Valeur initiale de la composante bleue b_ de la couleur.
+    * \param shininess  Valeur initiale du coefficient de luminosité shininess_.
     */
 	Material(float r, float g, float b, float shininess);
 
@@ -39,7 +39,7 @@ public:
 
 	/**
     * \brief Mutateur pour la composante de couleur bleue b_.
-    * \param b : nouvelle valeur pour la composante b_.
+    * \param b  Nouvelle valeur pour la composante b_.
     */
 	void setB(float b) {
 		b_ = b;
@@ -55,7 +55,7 @@ public:
 
 	/**
     * \brief Mutateur pour la composante de couleur verte g_.
-    * \param g : nouvelle valeur pour la composante g_.
+    * \param g  Nouvelle valeur pour la composante g_.
     */
 	void setG(float g) {
 		g_ = g;
@@ -71,7 +71,7 @@ public:
 
 	/**
     * \brief Mutateur pour la composante de couleur rouge r_.
-    * \param r : nouvelle valeur pour la composante r_.
+    * \param r Nouvelle valeur pour la composante r_.
     */
 	void setR(float r) {
 		r_ = r;
@@ -87,7 +87,7 @@ public:
 
 	/**
     * \brief Mutateur pour le coefficient de luminosité shininess_.
-    * \param shininess : nouvelle valeur pour le coefficient shininess_.
+    * \param shininess  Nouvelle valeur pour le coefficient shininess_.
     */
 	void setShininess(float shininess) {
 		shininess_ = shininess;

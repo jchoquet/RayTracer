@@ -10,13 +10,14 @@ class Ray3f {
 public:
     /**
     * \brief Constructeur par défaut.
-    * \details Initialise les coordonnées des vecteurs origine_ et direction_ à 0. Les coordonnées du vecteur inv_direction_ sont initialisées à 1000000.
+    * \details Initialise les coordonnées des vecteurs origine_ et direction_ à 0. Les coordonnées du vecteur inv_direction_ sont initialisées à 0.
     */
 	Ray3f();
 
     /**
     * \brief Constructeur.
     * \details Initialise les vecteurs composantes avec ceux passés en argument.
+    * Pour chaque coordonnée différente de 0, son inverse est stocké dans le vecteur inv_direction_.
     * \param origin : Valeur initiale du vecteur origin_.
     * \param direction : Valeur initiale du vecteur direction_.
     */
@@ -37,7 +38,7 @@ public:
 
 	/**
     * \brief Mutateur pour le vecteur direction_.
-    * \param direction : nouvelle valeur pour le vecteur direction_.
+    * \param direction  Nouvelle valeur pour le vecteur direction_.
     */
 	void setDirection(const Vector3f& direction) {
 		direction_ = direction;
@@ -53,7 +54,7 @@ public:
 
     /**
     * \brief Mutateur pour le vecteur origin_.
-    * \param direction : nouvelle valeur pour le vecteur origin_.
+    * \param origin Nouvelle valeur pour le vecteur origin_.
     */
 	void setOrigin(const Vector3f& origin) {
 		origin_ = origin;
@@ -69,7 +70,7 @@ public:
 
 	/**
 	* \brief Mutateur pour le vecteur inv_direction_.
-	* \param un nouveau vecteur pour inv_direction
+	* \param invDirection Une nouvelle valeur pour le vecteur inv_direction_.
 	*/
 	void setInvDirection(const Vector3f& invDirection) {
 		inv_direction_ = invDirection;

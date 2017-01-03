@@ -30,7 +30,7 @@ Scene::Scene(Camera& camera, std::vector<Shape*> shapes, int nb_shape, Vector3f&
 }
 
 Scene::~Scene(){
-	for (int i=0;i<shapes_.size();i++) {
+	for (int unsigned i=0;i<shapes_.size();i++) {
 		delete shapes_[i];
 	}
 	shapes_.shrink_to_fit();
@@ -73,8 +73,8 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 
 			//cout << y_topleft_image - i << " -- " << z_topleft_image + j << endl;
 
-			// On parcout le tableau d'objets présents sur la scène
-			for(int k=0; k<shapes_.size(); k++)
+			// On parcourt le tableau d'objets présents sur la scène
+			for(int unsigned k=0; k<shapes_.size(); k++)
             {
                 // Pour chaque objet, on regarde s'il y a intersection entre celui-ci et le rayon reliant la caméra et le pixel
 				toChange = shapes_[k]->isHit(line, pdistance, px, py, pz);
@@ -109,7 +109,7 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 					// On vérifie que le rayon lightRay ne rencontre pas d'autre objet avant le point d'intersection
 					// Si oui, le pixel devient de couleur noire
 					lightDistance = -1;
-					for(int l=5; l<shapes_.size(); l++) {
+					for(int unsigned l=5; l<shapes_.size(); l++) {
 						//cout << lightRay.getDirection().getX() << " - " << lightRay.getDirection().getY() << " - " << lightRay.getDirection().getZ() << endl;
 						isHit = shapes_[l]->isHit(lightRay,pLightDistance,plx,ply,plz);
 						//if (line.getDirection().getY() == 0 && line.getDirection().getZ() == 0) {cout << "[" << isHit << "]" << endl;}

@@ -23,14 +23,14 @@ public:
     * \details Créé une image définie par la hauteur et la largeur passées en argument.
     * Le tableau de pixels correspondant est créé et rempli de pixels de couleur blanche (255,255,255).
     * \exception std::runtime_error si la largeur ou la hauteur est inférieure à 1.
-    * \param width : Valeur initiale de la largeur de l'image width_.
-    * \param height : Valeur initiale de la hauteur de l'image height_.
+    * \param width Valeur initiale de la largeur de l'image width_.
+    * \param height  Valeur initiale de la hauteur de l'image height_.
     */
 	Image(int width, int height);
 
 	/**
     * \brief Constructeur de copie.
-    * \param image : Référence vers l'image à copier.
+    * \param image Référence vers l'image à copier.
     */
 	Image(const Image & image);
 
@@ -50,7 +50,7 @@ public:
 
     /**
     * \brief Mutateur pour la hauteur de l'image height_.
-    * \param height : nouvelle valeur pour la hauteur de l'image height_.
+    * \param height nouvelle valeur pour la hauteur de l'image height_.
     */
 	void setHeight(int height) {
 		height_ = height;
@@ -59,8 +59,8 @@ public:
     /**
     * \brief Modifier un Pixel de l'image.
     * \details Permet de remplacer un pixel de l'image à partir de ses coordonnées 2D (x,y) et en précisant le pixel de remplacement.
-    * \param x : abscisse du Pixel à remplacer.
-    * \param y : ordonnée du Pixel à remplacer.
+    * \param x abscisse du Pixel à remplacer.
+    * \param y ordonnée du Pixel à remplacer.
     * \param pixel : Pixel de remplacement.
     */
 	void setOnePixel (int x, int y, Pixel pixel) {
@@ -71,8 +71,8 @@ public:
 	/**
     * \brief Sélectionner un Pixel de l'image (2D).
     * \details Permet d'obtenir un Pixel de l'image à partir de ses coordonnées 2D (x, y).
-    * \param x : abscisse du Pixel sélectionné.
-    * \param y : ordonnée du Pixel sélectionné.
+    * \param x abscisse du Pixel sélectionné.
+    * \param y ordonnée du Pixel sélectionné.
     * \return Le Pixel de l'image correspandant aux coordonnées passées en argument.
     */
 	Pixel getOnePixel (int x, int y) {
@@ -82,7 +82,7 @@ public:
 	/**
     * \brief Sélectionner un Pixel de l'image (1D).
     * \details Permet d'obtenir un Pixel de l'image à partir de son indice de placement dans le tableau pixels_.
-    * \param i : indice de placement du Pixel dans le tableau de Pixel pixels_.
+    * \param i indice de placement du Pixel dans le tableau de Pixel pixels_.
     * \return Le Pixel de l'image correspandant à l'indice passé en argument.
     */
 	Pixel getOnePixel (int i) const {
@@ -99,7 +99,7 @@ public:
 
     /**
     * \brief Mutateur pour la largeur de l'image width_.
-    * \param width : nouvelle valeur pour la largeur de l'image width_.
+    * \param width nouvelle valeur pour la largeur de l'image width_.
     */
 	void setWidth(int width) {
 		width_ = width;
@@ -115,7 +115,7 @@ public:
 
 	/**
     * \brief Opérateur d'affectation.
-    * \param image : Une référence constante vers l'Image que l'on souhaite copier.
+    * \param image Une référence constante vers l'Image que l'on souhaite copier.
     */
 	Image & operator=(const Image & image);
 
@@ -123,9 +123,9 @@ public:
     * \brief Opérateur de flux pour l'affichage.
     * \details Méthode amie permettant d'afficher l'ensemble des pixels de l'image sous le format [r,v,b] séparés par une virgule.
     * Un retour à la ligne est effectué après que width_ pixels ont été affichés.
-    * \param st : Une référence vers le flux où l'on souhaite afficher l'image.
-    * \param image : Une référence constante vers l'image à afficher.
-    * \return Une référence vers un flux #ostream contenant l'affichage de l'image.
+    * \param st Une référence vers le flux où l'on souhaite afficher l'image.
+    * \param image Une référence constante vers l'image à afficher.
+    * \return Une référence vers un flux std::ostream contenant l'affichage de l'image.
     */
 	friend std::ostream & operator << (std::ostream & st, const Image & image);
 

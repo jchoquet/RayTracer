@@ -21,6 +21,9 @@
 
 using namespace std;
 
+/**
+* \brief Fonction principale du projet.
+*/
 int main() {
 
 	/*

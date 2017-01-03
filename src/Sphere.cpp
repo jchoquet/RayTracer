@@ -1,6 +1,6 @@
 /**
  * \file Sphere.cpp
- * \brief Implémentation de la classe Shape.
+ * \brief Implémentation de la classe Sphere.
  * \author Alexandre DE BOE, Julie CHOQUET
 */
 
@@ -24,9 +24,9 @@ Sphere::~Sphere() {
 }
 bool Sphere::isHit(Ray3f ray, double* distance, double* px, double* py, double* pz) {
 
-  /* Initialisation des variables */
+    /* Initialisation des variables */
 
-  // Variables pour la résolution de l'équation paramétrique d'intersection
+    // Variables pour la résolution de l'équation paramétrique d'intersection
 	double a, b, c;
 	double delta;
 

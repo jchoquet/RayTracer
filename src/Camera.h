@@ -4,7 +4,7 @@
 #include "Vector3f.h"
 
 /** \class Camera
- * \brief Représente la caméra ou l'oeuil avec lequel on regarde la scène.
+ * \brief Représente la caméra ou l'œil avec lequel on regarde la scène.
  * \details La caméra est déterminée par une position et une direction sous forme de vecteur 3D de flottants (cf #Vector3f).
  */
 class Camera {
@@ -18,8 +18,8 @@ public:
     /**
     * \brief Constructeur.
     * \details Initialise les vecteurs composantes avec ceux passés en argument.
-    * \param position : Valeur initiale du vecteur position_.
-    * \param direction : Valeur initiale du vecteur direction_.
+    * \param position  Valeur initiale du vecteur position_.
+    * \param direction  Valeur initiale du vecteur direction_.
     */
 	Camera(Vector3f position, Vector3f direction);
 
@@ -38,7 +38,7 @@ public:
 
 	/**
     * \brief Mutateur pour le vecteur direction_.
-    * \param direction : nouvelle valeur pour le vecteur direction_.
+    * \param direction  Nouvelle valeur pour le vecteur direction_.
     */
 	void setDirection(const Vector3f& direction) {
 		direction_ = direction;
@@ -54,7 +54,7 @@ public:
 
 	/**
     * \brief Mutateur pour le vecteur position_.
-    * \param direction : nouvelle valeur pour le vecteur position_.
+    * \param position  Nouvelle valeur pour le vecteur position_.
     */
 	void setPosition(const Vector3f& position) {
 		position_ = position;

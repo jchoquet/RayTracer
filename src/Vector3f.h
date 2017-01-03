@@ -15,9 +15,9 @@ public:
 	/**
     * \brief Constructeur.
     * \details Initialise les 3 coordonnées avec les valeurs passées en argument.
-    * \param x : Valeur initiale de la première composante.
-    * \param y : Valeur initiale de la seconde composante.
-    * \param z : Valeur initiale de la troisième composante.
+    * \param x Valeur initiale de la première composante.
+    * \param y Valeur initiale de la seconde composante.
+    * \param z Valeur initiale de la troisième composante.
     */
 	Vector3f(float x, float y, float z);
 
@@ -36,7 +36,7 @@ public:
 
 	/**
     * \brief Mutateur pour la coordonnée x_.
-    * \param x : nouvelle valeur de la coordonnée x_
+    * \param x Nouvelle valeur de la coordonnée x_
     */
 	void setX(float x) {
 		x_ = x;
@@ -52,7 +52,7 @@ public:
 
     /**
     * \brief Mutateur pour la coordonnée y_.
-    * \param y : nouvelle valeur de la coordonnée y_
+    * \param y  Nouvelle valeur de la coordonnée y_.
     */
 	void setY(float y) {
 		y_ = y;
@@ -68,7 +68,7 @@ public:
 
     /**
     * \brief Mutateur pour la coordonnée z_.
-    * \param x : nouvelle valeur de la coordonnée z_
+    * \param z Nouvelle valeur de la coordonnée z_.
     */
 	void setZ(float z) {
 		z_ = z;

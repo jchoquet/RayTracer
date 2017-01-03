@@ -137,4 +137,7 @@ bool Quad::isHit(Ray3f ray3f, double* distance, double* px, double* py, double* 
 			return false;
 		}
 	}
+	else {
+        return false;
+	}
 }

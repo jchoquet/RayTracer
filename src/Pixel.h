@@ -19,15 +19,15 @@ public:
 	/**
     * \brief Constructeur.
     * \details Initialise les 3 nivaux de couleurs avec ceux passés en arguments.
-    * \param r : Valeur initiale pour l'octet associé au rouge r_.
-    * \param g : Valeur initiale pour l'octet associé au vert g_.
-    * \param b : Valeur initiale pour l'octet associé au bleu b_.
+    * \param r  Valeur initiale pour l'octet associé au rouge r_.
+    * \param g  Valeur initiale pour l'octet associé au vert g_.
+    * \param b  Valeur initiale pour l'octet associé au bleu b_.
     */
 	Pixel(uint8_t r, uint8_t g, uint8_t b);
 
 	/**
     * \brief Constructeur de copie.
-    * \param pixel : Référence vers le Pixel à copier.
+    * \param pixel  Référence vers le Pixel à copier.
     */
 	Pixel(const Pixel & pixel);
 
@@ -46,7 +46,7 @@ public:
 
 	/**
     * \brief Mutateur pour le niveau de bleu b_.
-    * \param b_ : nouvelle valeur pour l'octet associé au niveau de bleu b_.
+    * \param b  nouvelle valeur pour l'octet associé au niveau de bleu b_.
     */
 	void setB(uint8_t b) {
 		b_ = b;
@@ -54,7 +54,7 @@ public:
 
 	/**
     * \brief Accesseur pour le niveau de vert g_.
-    * \return Un \e uint8_t avec la valeur de l'octet associé au niveau de vert v_.
+    * \return Un \e uint8_t avec la valeur de l'octet associé au niveau de vert g_.
     */
 	uint8_t getG() const {
 		return g_;
@@ -62,7 +62,7 @@ public:
 
 	/**
     * \brief Mutateur pour le niveau de vert v_.
-    * \param b_ : nouvelle valeur pour l'octet associé au niveau de vert v_.
+    * \param g  Nouvelle valeur pour l'octet associé au niveau de vert g_.
     */
 	void setG(uint8_t g) {
 		g_ = g;
@@ -78,30 +78,30 @@ public:
 
 	/**
     * \brief Mutateur pour le niveau de rouge r_.
-    * \param b_ : nouvelle valeur pour l'octet associé au niveau de rouge r_.
+    * \param r  nouvelle valeur pour l'octet associé au niveau de rouge r_.
     */
 	void setR(uint8_t r) {
 		r_ = r;
 	}
 
 	/**
-    * \brief TODO
-    * \param level : TODO
+    * \brief Ajout de la luminosité au pixel.
+    * \param level coefficient reflétant l'impact de la lumière sur ce pixel, on le soustrait à chaque composante puis on ajoute 155.
     */
 	void luminosity(double level);
 
 	/**
     * \brief Opérateur d'affectation.
-    * \param pixel : Une référence constante vers le pixel que l'on souhaite copier.
+    * \param pixel Une référence constante vers le pixel que l'on souhaite copier.
     */
 	Pixel & operator=(const Pixel & pixel);
 
 	/**
     * \brief Opérateur de flux pour l'affichage.
     * \details Méthode amie permettant d'afficher un pixel sous le format [r,v,b].
-    * \param st : Une référence vers le flux où l'on souhaite afficher le pixel.
-    * \param pixel : Une référence constante vers le pixel à afficher.
-    * \return Une référence vers un flux #ostream contenant l'affichage du pixel.
+    * \param st  Une référence vers le flux où l'on souhaite afficher le pixel.
+    * \param pixel  Une référence constante vers le pixel à afficher.
+    * \return Une référence vers un flux std::ostream contenant l'affichage du pixel.
     */
 	friend std::ostream & operator << (std::ostream & st, const Pixel & pixel);
 

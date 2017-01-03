@@ -21,7 +21,8 @@ Image::Image() : width_(20), height_(15){
 }
 
 Image::Image(int width, int height){
-    // Vérification de la validité de la largeur et de la hauteur choisies
+
+    // Vérification de la validité des arguments
 	if (width<1 || height<1)
 	{
 		throw std::runtime_error("Incompatible value : value > 0 required");

@@ -24,12 +24,10 @@ public:
     /**
     * \brief Constructeur.
     * \details Créé une scène à partir des données passées en argument.
-    * \param camera : Valeur initiale pour la caméra camera_.
-    * \param shapes : Tableau d'objet initial pour le tableau shapes_.
-    * \param nb_shape : Nombre d'objet contenu initialement dans la scène (nb_shapes_).
-    * \param source : Position initiale de la source de lumière contenue dans source_.
-    * \param width : Valeur initiale de la largeur de l'image width_.
-    * \param height : Valeur initiale de la hauteur de l'image height_.
+    * \param camera  Valeur initiale pour la caméra camera_.
+    * \param shapes  Tableau d'objet initial pour le tableau shapes_.
+    * \param nb_shape  Nombre d'objet contenu initialement dans la scène (nb_shapes_).
+    * \param source  Position initiale de la source de lumière contenue dans source_.
     */
 	Scene(Camera& camera, std::vector<Shape*> shapes, int nb_shape, Vector3f& source);
 
@@ -49,7 +47,7 @@ public:
 
     /**
     * \brief Mutateur pour la #Camera camera_.
-    * \param camera : Nouvelle valeur pour la caméra de la scène camera_.
+    * \param camera  Nouvelle valeur pour la caméra de la scène camera_.
     */
 	void setCamera(const Camera& camera) {
 		camera_ = camera;
@@ -65,7 +63,7 @@ public:
 
     /**
     * \brief Mutateur pour le nombre d'objets nb_shape_.
-    * \param nbShape : Nouveau nombre d'objets présents sur la scène.
+    * \param nbShape  Nouveau nombre d'objets présents sur la scène.
     */
 	void setNbShape(int nbShape) {
 		nb_shape_ = nbShape;
@@ -89,7 +87,7 @@ public:
 
 	/**
     * \brief Mutateur pour le vecteur source_.
-    * \param source : Nouvelle valeur pour le vecteur source_ contenant la position de la source de lumière.
+    * \param source  Nouvelle valeur pour le vecteur source_ contenant la position de la source de lumière.
     */
 	void setSource(const Vector3f& source) {
 		source_ = source;
@@ -98,12 +96,12 @@ public:
     /**
     * \brief Rendu de la scène.
     * \details Crée et sauvegarde l'image correspondant à la scène. La taille et le nom du fichier sont spécifiés.
-    * \param width : Largeur de l'image souhaitée.
-    * \param height : Longueur de l'image souhaitée.
-    * \param name : Nom du fichier final.
-    * \param x_image :
-    * \param y_topleft_image :
-    * \param z_topleft_image :
+    * \param width  Largeur de l'image souhaitée.
+    * \param height  Longueur de l'image souhaitée.
+    * \param name  Nom du fichier final.
+    * \param x_image abscisse de l'image
+    * \param y_topleft_image ordonnée du coin en haut à gauche de l'image
+    * \param z_topleft_image hauteur du coin en haut à gauche de l'image
     */
 	void render(int width, int height, char* name, int x_image, int y_topleft_image, int z_topleft_image);
 

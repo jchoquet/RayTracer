@@ -19,7 +19,7 @@ public:
 	/**
     * \brief Constructeur.
     * \details Crée un objet fait du matériel passé en argument.
-    * \param  matter: Valeur initiale du matériel matter_ composant l'objet.
+    * \param  matter Valeur initiale du matériel matter_ composant l'objet.
     */
 	Shape(const Material& matter);
 
@@ -38,7 +38,7 @@ public:
 
 	/**
     * \brief Mutateur pour le matériel composant l'objet matter_.
-    * \param matter : nouvelle valeur pour le #Material matter_.
+    * \param matter  Nouvelle valeur pour le #Material matter_.
     */
 	void setMatter(const Material& matter) {
 		matter_ = matter;
@@ -46,7 +46,7 @@ public:
 
 	/**
     * \brief Réflection d'un rayon sur l'objet.
-    * \param ray : rayon que l'on veut réfléchir sur l'objet
+    * \param ray  Rayon que l'on veut réfléchir sur l'objet.
     * \return Une référence constante vers le rayon #Ray3f réfléchi par l'objet.
     */
 	const Ray3f& reflect(const Ray3f& ray);

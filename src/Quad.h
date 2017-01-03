@@ -19,9 +19,9 @@ public:
     /**
     * \brief Constructeur.
     * \details Crée un cube défini par l'origine, la taille et le matériel passés en argument.
-    * \param  matter : Valeur initiale du matériel matter_ composant le cube.
-    * \param origin : Valeur initiale du vecteur origin_.
-    * \param nsize :  Valeur initiale du vecteur size_.
+    * \param  matter  Valeur initiale du matériel matter_ composant le cube.
+    * \param origin  Valeur initiale du vecteur origin_.
+    * \param nsize   Valeur initiale du vecteur size_.
     */
 	Quad(const Material& matter, Vector3f origin, Vector3f nsize);
 
@@ -40,7 +40,7 @@ public:
 
 	/**
     * \brief Mutateur pour le vecteur origin_.
-    * \param origin : nouvelle valeur pour le vecteur contenant l'origine origin_.
+    * \param origin  Nouvelle valeur pour le vecteur contenant l'origine origin_.
     */
 	void setOrigin(const Vector3f& origin) {
 		origin_ = origin;
@@ -56,7 +56,7 @@ public:
 
 	/**
     * \brief Mutateur pour le vecteur size_.
-    * \param nsize : nouvelle valeur pour le vecteur de taille size_.
+    * \param nsize  Nouvelle valeur pour le vecteur de taille size_.
     */
 	void setSize(const Vector3f& nsize) {
 		size_ = nsize;
@@ -66,12 +66,12 @@ public:
     * \brief  Intersection entre le cube et un rayon.
     * \details Utilise l'algorithme de Brian Smits. Calcul l'intersection et vérifie qu'elle est à une distance moins élevée que la précédente grâce
     * au paramètre distance. Si les conditions sont respéctées, les coordonnées du point d'intersection seront stockées dans les pointeurs passés en argument.
-    * \param ray3f : rayon dont on teste l'intersection avec le cube
-    * \param distance : Distance entre le rayon d'origine et le précèdent point d'intersection.
-    * \param px : Pointeur vers un double contenant l'abscisse du précédent point d'intersection.
-    * \param py : Pointeur vers un double contenant l'ordonnée du précédent point d'intersection.
-    * \param pz : Pointeur vers un double contenant la profondeur du précédent point d'intersection.
-    * \return true si le rayon intersecte le cube et que sa distance avec l'origine du rayon et inférieure à celle pointée dans distance, sinon false
+    * \param ray3f  Rayon dont on teste l'intersection avec le cube.
+    * \param distance  Distance entre le rayon d'origine et le précèdent point d'intersection.
+    * \param px  Pointeur vers un double contenant l'abscisse du précédent point d'intersection.
+    * \param py  Pointeur vers un double contenant l'ordonnée du précédent point d'intersection.
+    * \param pz  Pointeur vers un double contenant la profondeur du précédent point d'intersection.
+    * \return true si le rayon intersecte le cube et que sa distance avec l'origine du rayon et inférieure à celle pointée dans distance, sinon false.
     */
 	bool isHit(Ray3f ray3f, double* distance, double* px, double* py, double* pz);
 
