@@ -61,6 +61,8 @@ public:
 		radius_ = radius;
 	}
 
+	const Ray3f& reflect(const Ray3f& ray);
+
 	/**
     * \brief Intersection entre la sphère et un rayon.
     * \details Utilise l'algorithme de Brian Smits. Calcul l'intersection et vérifie qu'elle est à une distance moins élevée que la précédente grâce

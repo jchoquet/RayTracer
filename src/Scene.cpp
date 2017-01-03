@@ -106,6 +106,15 @@ void Scene::render(int width, int height, char* name, int x_image, int y_topleft
 					//if (line.getDirection().getY() == 0 && line.getDirection().getZ() == 0) {cout << (int) newPix.getR() << "[" << (int) newPix.getG() << "]" << (int) newPix.getB() << endl;}
 					image->setOnePixel(i,j, newPix);
 
+
+
+
+
+					// Pour les reflets, on calcule le rayon reflet avec la methode reflect et on calcule les intersections de ce rayon reflete avec les objets de la scene
+
+
+
+
 					// On vérifie que le rayon lightRay ne rencontre pas d'autre objet avant le point d'intersection
 					// Si oui, le pixel devient de couleur noire
 					lightDistance = -1;
